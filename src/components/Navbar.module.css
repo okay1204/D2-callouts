@@ -1,13 +1,13 @@
 .nav {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-bottom: 10px solid var(--background);
+    padding: 1rem;
+    border-bottom: 1rem solid var(--background);
     background-color: var(--background);
 }
 
 .nav > * {
-    margin-right: 5px;
+    margin-right: 0.4rem;
 }
 
 @media (max-width: 768px) {

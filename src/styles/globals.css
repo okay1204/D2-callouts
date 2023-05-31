@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
 :root {
     --max-width: 1100px;
     --border-radius: 12px;
 
-    --background: #001426;
-    --background-secondary: #002c54;
+    --background: #02050e;
+    --background-secondary: #001426;
+
+    --text-primary: #ffffff;
+    --text-secondary: #707e8f;
 
     --primary-darker: #3D3B8E;
     --primary-lighter: #6883BA;
@@ -13,16 +19,8 @@
 
     --tertiary: #E4FDE1;
 
-    --font-primary: Roboto, "Helvetica Neue", sans-serif;
-    --font-secondary: "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    color: white;
-    font-family: var(--font-primary);
+    --font-title: Kanit, Arial, sans-serif;
+    --font-primary: Roboto, Verdana, sans-serif
 }
 
 html,
@@ -39,4 +37,23 @@ main {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-family: var(--font-title);
+}
+
+@media (max-width: 1400px) {
+    :root {
+        --max-width: 100%;
+    }
 }
