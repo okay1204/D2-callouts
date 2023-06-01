@@ -5,6 +5,7 @@
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .showCaseText {
@@ -30,6 +31,34 @@
 .showcaseImage {
     width: 100%;
     height: auto;
+}
+
+/* Showcase grid background */
+.showcaseBackground {
+    position: relative;
+    overflow: hidden;
+}
+
+.showcaseBackground::before {
+    content: "";
+    position: absolute;
+    width: 200rem;
+    height: 100rem;
+    background: repeating-linear-gradient(-85deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 0.15%, rgba(0, 0, 0, 0) 1%),
+                repeating-linear-gradient(20deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 0.15%, rgba(0, 0, 0, 0) 1%);
+}
+
+.showcaseBackgroundFade {
+    position: relative;
+    overflow: hidden;
+}
+
+.showcaseBackgroundFade::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--background), rgba(0, 0, 0, 0) 30%, var(--background) 90%);
 }
 
 @media screen and (max-width: 1300px) {
