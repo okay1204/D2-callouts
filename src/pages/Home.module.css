@@ -48,6 +48,17 @@
                 repeating-linear-gradient(20deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 0.15%, rgba(0, 0, 0, 0) 1%);
 }
 
+.showcaseMouse {
+    position: relative;
+    content: "";
+    position: absolute;
+    overflow: hidden;
+    width: 30rem;
+    height: 30rem;
+    border-radius: 100%;
+    background: radial-gradient(circle at center, var(--background), var(--background) 20%, rgba(0, 0, 0, 0) 70%);
+}
+
 .showcaseBackgroundFade {
     position: relative;
     overflow: hidden;
