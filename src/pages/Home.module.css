@@ -1,7 +1,7 @@
 .showcase {
     display: flex;
     width: 70%;
-    height: 50%;
+    height: 80vh;
     justify-content: space-around;
     align-items: center;
     margin: 0 auto;
@@ -29,7 +29,7 @@
 
 .showcaseImage {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 1300px) {
@@ -47,6 +47,7 @@
         margin-top: 5rem;
         flex-direction: column;
         width: 90%;
+        /* height: 60% */
     }
 
     .showCaseText {
@@ -56,11 +57,13 @@
     .showcaseImageContainer {
         margin-left: 0;
         flex-basis: 100%;
+        width: 70%;
     }
 }
 
 @media screen and (max-width: 400px) {
     .showCaseText {
         font-size: 1rem;
+        margin-bottom: 1rem;
     }
 }
