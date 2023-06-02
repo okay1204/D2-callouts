@@ -72,6 +72,35 @@
     background: linear-gradient(to bottom, var(--background), rgba(0, 0, 0, 0) 30%, var(--background) 90%);
 }
 
+.calloutListHeader {
+    text-align: center;
+}
+
+.calloutList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.calloutSet {
+    display: flex;
+    align-items: center;
+    border: 1px var(--background-secondary) solid;
+    border-radius: 0.3rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 12rem;
+    padding: 2rem 4rem;
+    cursor: pointer;
+}
+
+.calloutSetText ul {
+    list-style: inside;
+}
+
 @media screen and (max-width: 1300px) {
     .showcase {
         width: 90%;

@@ -1,32 +1,27 @@
+import calloutData from '@/calloutData'
 import RaidEmblem from '@/images/raid-emblem.png'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { MouseEvent, useState } from 'react'
 import styles from './Home.module.css'
-import { useEffect, useState } from 'react'
 
 
 export default function Home() {
     const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-    const [visible, setVisible] = useState(false);
+    const [mouseShadowVisible, setMouseShadowVisible] = useState(false);
+    const [isHoveringActivity, setIsHoveringActivity] = useState(false);
 
-    // Track mouse position and update showcaseMouse position
-    useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            setMousePos({ x: event.clientX, y: event.clientY });
-        };
-
-
-        window.addEventListener('mousemove', handleMouseMove);
+    const router = useRouter();
     
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
     return (
         <main>
-            <div className={styles.showcaseBackground} onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
-                <div className={styles.showcaseMouse} style={{top: mousePos.y - 330, left: mousePos.x - 250, visibility: visible ? 'visible' : 'hidden'}}>
-                </div>
+            <div className={styles.showcaseBackground}
+                onMouseMove={(event: MouseEvent) => setMousePos({ x: event.clientX, y: event.clientY })}
+                onMouseEnter={() => setMouseShadowVisible(true)}
+                onMouseLeave={() => setMouseShadowVisible(false)}
+            >
+                <div className={styles.showcaseMouse} style={{top: mousePos.y - 330, left: mousePos.x - 250, visibility: mouseShadowVisible ? 'visible' : 'hidden'}} />
                 <div className={styles.showcaseBackgroundFade}>
                     <div className={styles.showcase}>
                         <div className={styles.showCaseText}>
@@ -38,6 +33,27 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <h1 className={styles.calloutListHeader}>Callout sets</h1>
+            <div className={styles.calloutList}>
+                {calloutData.map(calloutSet => (
+                    <div className={styles.calloutSet}
+                        key={calloutSet.id}
+                        onClick={(event: MouseEvent) => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
+                    >
+                        <div className={styles.calloutSetText}>
+                            <h2>{calloutSet.name}</h2>
+                            <ul>
+                                {calloutSet.activities.map(activity => (
+                                    <Link href={`/callout/${calloutSet.id}/${activity.name}`} key={activity.name} onMouseEnter={() => setIsHoveringActivity(true)} onMouseLeave={() => setIsHoveringActivity(false)}>
+                                        <li>{activity.name}</li>
+                                    </Link>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
             </div>
         </main>
     )
