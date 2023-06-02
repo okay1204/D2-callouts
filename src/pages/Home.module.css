@@ -97,8 +97,17 @@
     cursor: pointer;
 }
 
-.calloutSetText ul {
+.calloutSetText ul li {
     list-style: inside;
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out;
+    text-decoration-color: var(--text-secondary-dark);
+}
+
+.calloutSetText ul li:hover {
+    color: var(--text-secondary-bright);
+    text-decoration-color: var(--text-secondary-bright);
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 1300px) {
@@ -109,6 +118,10 @@
     .showCaseText {
         font-size: 1.2rem;
     }
+
+    .calloutList {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -116,7 +129,6 @@
         margin-top: 5rem;
         flex-direction: column;
         width: 90%;
-        /* height: 60% */
     }
 
     .showCaseText {
@@ -127,6 +139,15 @@
         margin-left: 0;
         flex-basis: 100%;
         width: 70%;
+    }
+
+    .calloutList {
+        width: 95%;
+    }
+
+    .calloutSet {
+        justify-content: center;
+        height: 15rem;
     }
 }
 
