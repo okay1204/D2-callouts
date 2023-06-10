@@ -88,6 +88,7 @@
 .calloutSet {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 1px var(--background-secondary) solid;
     border-radius: 0.3rem;
     margin-bottom: 2rem;
@@ -108,6 +109,17 @@
     color: var(--text-secondary-bright);
     text-decoration-color: var(--text-secondary-bright);
     transform: scale(1.05);
+}
+
+.calloutSetSymbols {
+    display: flex;
+    align-items: center;
+}
+
+.calloutSetSymbolContainer {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
 }
 
 @media screen and (max-width: 1300px) {
@@ -148,6 +160,8 @@
     .calloutSet {
         justify-content: center;
         height: 15rem;
+        flex-direction: column;
+        padding: 0rem 0rem;
     }
 }
 
@@ -155,5 +169,10 @@
     .showCaseText {
         font-size: 1rem;
         margin-bottom: 1rem;
+    }
+
+    .calloutSetSymbolContainer {
+        width: 5rem;
+        height: 5rem;
     }
 }

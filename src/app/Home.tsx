@@ -41,7 +41,7 @@ export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBanner
                 {calloutData.map(calloutSet => (
                     <div
                         className={styles.calloutSet}
-                        style={{ background: `linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3533788515406162) 28%, rgba(0,0,0,0) 36%), no-repeat center url('/images/callouts/${calloutSet.id}/banner/background.png')` }}
+                        style={{ background: `linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3533788515406162) 28%, rgba(0,0,0,0) 36%), no-repeat center / cover url('/images/callouts/${calloutSet.id}/banner/background.png')` }}
                         key={calloutSet.id}
                         onClick={(event: MouseEvent) => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
                     >
@@ -56,7 +56,11 @@ export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBanner
                             </ul>
                         </div>
                         <div className={styles.calloutSetSymbols}>
-                            {calloutSetBannerSymbols[calloutSet.id].map(symbolName => <Image key={symbolName} className={styles.calloutSetSymbol} src={`/images/callouts/${calloutSet.id}/banner/symbols/${symbolName}`} alt='Callout Set Symbol' width={50} height={50} />)}
+                            {calloutSetBannerSymbols[calloutSet.id].map(symbolName => (
+                                <div className={styles.calloutSetSymbolContainer}>
+                                    <Image key={symbolName} fill={true} className={styles.calloutSetSymbol} src={`/images/callouts/${calloutSet.id}/banner/symbols/${symbolName}`} alt='Callout Set Symbol' />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 ))}
