@@ -58,7 +58,14 @@ export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBanner
                         <div className={styles.calloutSetSymbols}>
                             {calloutSetBannerSymbols[calloutSet.id].map(symbolName => (
                                 <div className={styles.calloutSetSymbolContainer}>
-                                    <Image key={symbolName} fill={true} className={styles.calloutSetSymbol} src={`/images/callouts/${calloutSet.id}/banner/symbols/${symbolName}`} alt='Callout Set Symbol' />
+                                    <Image
+                                        key={symbolName}
+                                        fill={true}
+                                        sizes="8rem, (max-width: 400px) 5rem"
+                                        className={styles.calloutSetSymbol}
+                                        src={`/images/callouts/${calloutSet.id}/banner/symbols/${symbolName}`}
+                                        alt='Callout Set Symbol' 
+                                    />
                                 </div>
                             ))}
                         </div>
