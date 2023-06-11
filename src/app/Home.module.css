@@ -97,6 +97,13 @@
     padding: 2rem;
     padding-left: 4rem;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.calloutSet:hover {
+    border: 1px var(--text-secondary-bright) solid;
+    transform: scale(1.01);
+    opacity: 0.8;
 }
 
 .calloutSetText ul li {
