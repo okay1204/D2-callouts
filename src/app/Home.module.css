@@ -94,7 +94,8 @@
     margin-bottom: 2rem;
     width: 100%;
     height: 221px;
-    padding: 2rem 4rem;
+    padding: 2rem;
+    padding-left: 4rem;
     cursor: pointer;
 }
 
@@ -118,8 +119,14 @@
 
 .calloutSetSymbolContainer {
     position: relative;
-    width: 8rem;
-    height: 8rem;
+    width: 12rem;
+    height: 12rem;
+}
+
+@media screen and (max-width: 1500px) {
+    .calloutList {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 1300px) {
@@ -133,6 +140,11 @@
 
     .calloutList {
         width: 90%;
+    }
+
+    .calloutSetSymbolContainer {
+        width: 8rem;
+        height: 8rem;
     }
 }
 
@@ -161,7 +173,7 @@
         justify-content: center;
         height: 15rem;
         flex-direction: column;
-        padding: 0rem 0rem;
+        padding: 0;
     }
 }
 
