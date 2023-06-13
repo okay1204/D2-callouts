@@ -9,20 +9,13 @@ import { MouseEvent, useState } from 'react'
 import styles from './Home.module.css'
 
 export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBannerSymbols: { [key: string]: string[] } }) {
-    const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
-    const [mouseShadowVisible, setMouseShadowVisible] = useState(false);
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
 
     const router = useRouter();
 
     return (
         <main>
-            <div className={styles.showcaseBackground}
-                onMouseMove={(event: MouseEvent) => setMousePos({ x: event.clientX, y: event.clientY })}
-                onMouseEnter={() => setMouseShadowVisible(true)}
-                onMouseLeave={() => setMouseShadowVisible(false)}
-            >
-                <div className={styles.showcaseMouse} style={{ top: mousePos.y - 330, left: mousePos.x - 250, visibility: mouseShadowVisible ? 'visible' : 'hidden' }} />
+            <div className={styles.showcaseBackground}>
                 <div className={styles.showcaseBackgroundFade}>
                     <div className={styles.showcase}>
                         <div className={styles.showCaseText}>
