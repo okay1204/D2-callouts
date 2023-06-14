@@ -87,12 +87,12 @@
     padding-left: 4rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    opacity: 0.9;
 }
 
 .calloutSet:hover {
     border: 1px var(--text-secondary-bright) solid;
-    transform: scale(1.01);
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .calloutSetText ul li {
@@ -105,7 +105,6 @@
 .calloutSetText ul li:hover {
     color: var(--text-secondary-bright);
     text-decoration-color: var(--text-secondary-bright);
-    transform: scale(1.05);
 }
 
 .calloutSetSymbols {
@@ -115,8 +114,15 @@
 
 .calloutSetSymbolContainer {
     position: relative;
-    width: 12rem;
-    height: 12rem;
+    width: 9rem;
+    height: 9rem;
+    margin: 0 2.5rem;
+    filter: drop-shadow(1rem 1rem 20px black);
+    opacity: 0.9;
+}
+
+.calloutSetWhiteFilter {
+    filter: brightness(0) invert(1);
 }
 
 @media screen and (max-width: 1500px) {
@@ -141,10 +147,11 @@
     .calloutSetSymbolContainer {
         width: 8rem;
         height: 8rem;
+        margin: 0 1rem;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
     .showcase {
         margin-top: 5rem;
         flex-direction: column;
@@ -171,6 +178,12 @@
         flex-direction: column;
         padding: 0;
     }
+
+    .calloutSetSymbolContainer {
+        margin: 0.5rem 0.5rem;
+        width: 6rem;
+        height: 6rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -180,7 +193,8 @@
     }
 
     .calloutSetSymbolContainer {
-        width: 5rem;
-        height: 5rem;
+        margin: 0.25rem 0.25rem;
+        width: 4rem;
+        height: 4rem;
     }
 }

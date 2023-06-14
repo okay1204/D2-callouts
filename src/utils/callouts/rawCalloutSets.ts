@@ -1,16 +1,18 @@
-interface Activity {
+export interface RawActivity {
     name: string;
     imageIds: number[];
 }
 
-interface CalloutSet {
+export interface RawCalloutSet {
     name: string;
-    activities: Activity[];
-    // The id is also the image foler name
+    activities: RawActivity[];
+    // The id is also the image folder name
     id: string;
+    bannerImageIds: number[];
+    whiteBannerSymbolFilter?: boolean;
 }
 
-const symbols: CalloutSet[] = [
+export const rawCalloutSets: RawCalloutSet[] = [
     {
         name: 'Wish Symbols',
         activities: [
@@ -24,6 +26,7 @@ const symbols: CalloutSet[] = [
             },
         ],
         id: 'wish-symbols',
+        bannerImageIds: [0, 11, 15]
     },
     {
         name: 'Hive Runes',
@@ -42,6 +45,8 @@ const symbols: CalloutSet[] = [
             },
         ],
         id: 'hive-runes',
+        bannerImageIds: [12, 14, 15],
+        whiteBannerSymbolFilter: true
     },
     {
         name: 'Glyphs',
@@ -54,7 +59,6 @@ const symbols: CalloutSet[] = [
             },
         ],
         id: 'glyphs',
+        bannerImageIds: [11, 23, 25]
     },
 ];
-
-export default symbols;

@@ -1,14 +1,14 @@
 'use client'
 
-import calloutData from '@/calloutData'
 import RaidEmblem from '@/images/raid-emblem.png'
+import { CalloutSet } from '@/utils/callouts/calloutSets'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { MouseEvent, useState } from 'react'
 import styles from './Home.module.css'
 
-export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBannerSymbols: { [key: string]: string[] } }) {
+export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] }) {
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
 
     const router = useRouter();
@@ -31,7 +31,7 @@ export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBanner
 
             <h1 className={styles.calloutListHeader}>Callout sets</h1>
             <div className={styles.calloutList}>
-                {calloutData.map(calloutSet => (
+                {calloutSets.map(calloutSet => (
                     <div
                         className={styles.calloutSet}
                         style={{ background: `linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3533788515406162) 28%, rgba(0,0,0,0) 36%), no-repeat center / cover url('/images/callouts/${calloutSet.id}/banner/background.png')` }}
@@ -49,17 +49,18 @@ export default function HomePage({ calloutSetBannerSymbols }: { calloutSetBanner
                             </ul>
                         </div>
                         <div className={styles.calloutSetSymbols}>
-                            {calloutSetBannerSymbols[calloutSet.id].map(symbolName => (
-                                <div className={styles.calloutSetSymbolContainer} key={symbolName}>
+                            {calloutSet.bannerImages.map(imageReference => (
+                                <div className={`${styles.calloutSetSymbolContainer} ${calloutSet.whiteBannerSymbolFilter ? styles.calloutSetWhiteFilter : ''}`} key={imageReference.name}>
                                     <Image
                                         fill={true}
-                                        sizes="12rem, (max-width: 1300px) 8rem, (max-width: 400px) 5rem"
+                                        sizes="9rem, (max-width: 1300px) 8rem, (max-width: 850px) 6rem, (max-width: 400px) 4rem"
                                         className={styles.calloutSetSymbol}
-                                        src={`/images/callouts/${calloutSet.id}/banner/symbols/${symbolName}`}
+                                        src={imageReference.url}
                                         alt='Callout Set Symbol' 
                                     />
                                 </div>
                             ))}
+
                         </div>
                     </div>
                 ))}
