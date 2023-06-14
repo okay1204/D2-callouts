@@ -53,7 +53,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                 <div className={`${styles.calloutSetSymbolContainer} ${calloutSet.whiteBannerSymbolFilter ? styles.calloutSetWhiteFilter : ''}`} key={imageReference.name}>
                                     <Image
                                         fill={true}
-                                        sizes="9rem, (max-width: 1300px) 8rem, (max-width: 850px) 6rem, (max-width: 400px) 4rem"
+                                        sizes="7rem, (max-width: 850px) 6rem, (max-width: 400px) 4rem"
                                         className={styles.calloutSetSymbol}
                                         src={imageReference.url}
                                         alt='Callout Set Symbol' 

@@ -114,9 +114,9 @@
 
 .calloutSetSymbolContainer {
     position: relative;
-    width: 9rem;
-    height: 9rem;
-    margin: 0 2.5rem;
+    width: 7rem;
+    height: 7rem;
+    margin: 0 1.5rem;
     filter: drop-shadow(1rem 1rem 20px black);
     opacity: 0.9;
 }
@@ -145,8 +145,6 @@
     }
 
     .calloutSetSymbolContainer {
-        width: 8rem;
-        height: 8rem;
         margin: 0 1rem;
     }
 }
