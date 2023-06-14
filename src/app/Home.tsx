@@ -29,7 +29,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                 </div>
             </div>
 
-            <h1 className={styles.calloutListHeader}>Callout sets</h1>
+            <h1 className={styles.calloutListHeader}>Callout Sets</h1>
             <div className={styles.calloutList}>
                 {calloutSets.map(calloutSet => (
                     <div

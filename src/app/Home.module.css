@@ -62,6 +62,7 @@
 }
 
 .calloutListHeader {
+    font-size: 3rem;
     text-align: center;
 }
 
@@ -95,7 +96,12 @@
     opacity: 1;
 }
 
+.calloutSetText {
+    font-size: 1.8rem;
+}
+
 .calloutSetText ul li {
+    font-size: 1.2rem;
     list-style: inside;
     text-decoration: underline;
     transition: all 0.2s ease-in-out;
@@ -172,7 +178,7 @@
 
     .calloutSet {
         justify-content: center;
-        height: 15rem;
+        height: 17rem;
         flex-direction: column;
         padding: 0;
     }
