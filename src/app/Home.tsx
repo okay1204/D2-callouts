@@ -7,7 +7,7 @@ import { Variants, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import styles from './Home.module.css'
 
 const calloutSetVariants: Variants = {
@@ -31,6 +31,10 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
     const windowSize = useWindowSize();
 
     const router = useRouter();
+
+    useEffect(() => {
+        calloutSets.forEach(calloutSet => router.prefetch(`/callout/${calloutSet.id}`));
+    });
 
     return (
         <main>
