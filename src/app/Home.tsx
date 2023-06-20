@@ -2,6 +2,7 @@
 
 import RaidEmblem from '@/images/raid-emblem.png'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
+import { useWindowSize } from '@/utils/hooks'
 import { Variants, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -24,7 +25,10 @@ const calloutSetVariants: Variants = {
 }
 
 export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] }) {
+    const calloutSetVerticalMaxWidth = 850;
+
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
+    const windowSize = useWindowSize();
 
     const router = useRouter();
 
@@ -60,7 +64,9 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         whileInView="visible"
                         variants={calloutSetVariants}
                         className={styles.calloutSet}
-                        style={{ background: `linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3533788515406162) 28%, rgba(0,0,0,0) 36%), no-repeat center / cover url('/images/callouts/${calloutSet.id}/banner/background.png')` }}
+                        style={{
+                            background: `linear-gradient(to ${windowSize.width! > calloutSetVerticalMaxWidth ? 'right' : 'bottom'}, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3533788515406162) ${windowSize.width! > calloutSetVerticalMaxWidth ? 28 : 50}%, rgba(0,0,0,0) ${windowSize.width! > calloutSetVerticalMaxWidth ? 36 : 70}%), no-repeat center / cover url('/images/callouts/${calloutSet.id}/banner/background.png')`
+                        }}
                         key={calloutSet.id}
                         onClick={(event: MouseEvent) => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
                     >
