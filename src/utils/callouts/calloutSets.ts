@@ -48,7 +48,7 @@ const getCalloutImages = cache(async (calloutSetId: string): Promise<CalloutImag
     return calloutImages
 })
 
-const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
+export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
     const calloutSets: CalloutSet[] = []
 
     for (const rawCalloutSet of rawCalloutSets) {
@@ -74,5 +74,3 @@ const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
 
     return calloutSets
 })
-
-export default getCalloutSets

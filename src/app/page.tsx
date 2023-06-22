@@ -1,9 +1,7 @@
 
-import { promises as fs } from 'fs';
-import path from 'path';
+import { CalloutSet, getCalloutSets } from '@/utils/callouts/calloutSets';
 import HomePage from './Home';
-import getCalloutSets from '@/utils/callouts/calloutSets';
 
-export default async function Home() {
+export default async function Home({ calloutSets }: { calloutSets: CalloutSet }) {
     return <HomePage calloutSets={await getCalloutSets()} />
 }

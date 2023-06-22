@@ -78,7 +78,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                             <h2>{calloutSet.name}</h2>
                             <ul>
                                 {calloutSet.activities.map(activity => (
-                                    <Link href={`/callout/${calloutSet.id}/${activity.name}`} key={activity.name} onMouseEnter={() => setIsHoveringActivity(true)} onMouseLeave={() => setIsHoveringActivity(false)}>
+                                    <Link href={`/callout/${calloutSet.id}?activity=${activity.name}`} key={activity.name} onMouseEnter={() => setIsHoveringActivity(true)} onMouseLeave={() => setIsHoveringActivity(false)}>
                                         <li>{activity.name}</li>
                                     </Link>
                                 ))}
