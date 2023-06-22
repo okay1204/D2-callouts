@@ -1,5 +1,5 @@
 import 'server-only'
-import { RawCalloutSet, rawCalloutSets } from './rawCalloutSets'
+import { BaseCalloutSet, RawActivity, RawCalloutSet, rawCalloutSets } from './rawCalloutSets'
 import { cache } from 'react'
 import path from 'path'
 import fs from 'fs/promises'
@@ -14,18 +14,13 @@ interface CalloutImageDictionary {
     [imageId: number]: ImageReference
 }
 
-interface Activity {
-    name: string;
+interface Activity extends RawActivity {
     images: ImageReference[];
 }
 
-export interface CalloutSet {
-    name: string;
+export interface CalloutSet extends BaseCalloutSet {
     activities: Activity[];
-    // The id is also the image folder name
-    id: string;
     bannerImages: ImageReference[];
-    whiteBannerSymbolFilter?: boolean;
 }
 
 
@@ -58,7 +53,7 @@ export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
             ...rawCalloutSet,
             activities: rawCalloutSet.activities.map(activity => {
                 return {
-                    name: activity.name,
+                    ...activity,
                     images: activity.imageIds.map(imageId => {
                         return calloutImages[imageId]
                     }),

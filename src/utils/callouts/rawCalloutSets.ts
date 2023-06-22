@@ -1,15 +1,17 @@
+export interface BaseCalloutSet {
+    name: string;
+    id: string;
+    whiteBannerSymbolFilter?: boolean;
+    bannerImageIds: number[];
+}
+
 export interface RawActivity {
     name: string;
     imageIds: number[];
 }
 
-export interface RawCalloutSet {
-    name: string;
+export interface RawCalloutSet extends BaseCalloutSet {
     activities: RawActivity[];
-    // The id is also the image folder name
-    id: string;
-    bannerImageIds: number[];
-    whiteBannerSymbolFilter?: boolean;
 }
 
 export const rawCalloutSets: RawCalloutSet[] = [
