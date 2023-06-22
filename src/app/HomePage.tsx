@@ -52,6 +52,15 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         <motion.div
                             initial={{ x: 100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
+                            animate={{
+                                y: [null, -20],
+                                transition: {
+                                    repeat: Infinity,
+                                    repeatType: 'mirror',
+                                    duration: 5,
+                                    ease: 'easeInOut',
+                                }
+                            }}
                             className={styles.bannerImageContainer}
                         >
                             <Image className={styles.bannerImage} src={RaidEmblem} alt='Raid Emblem' />
