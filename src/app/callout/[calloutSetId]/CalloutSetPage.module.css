@@ -1,0 +1,17 @@
+.title {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.activitySelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.activitySelectButton {
+    font-size: 1.5rem;
+    background-color: var(--background-secondary);
+    margin: 0 1rem;
+}
