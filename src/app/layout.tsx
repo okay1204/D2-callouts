@@ -4,7 +4,7 @@ import styles from './RootLayout.module.css';
 import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({children}: {children: React.ReactNode[]}) {
     return (
         <html>
             <body className={styles.webpageContainer}>

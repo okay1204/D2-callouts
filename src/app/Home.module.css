@@ -1,4 +1,4 @@
-.showcase {
+.banner {
     display: flex;
     width: 70%;
     height: 80vh;
@@ -8,38 +8,38 @@
     position: relative;
 }
 
-.showCaseText {
+.bannerText {
     flex-basis: 35%;
     font-size: 1.5rem;
 }
 
-.showCaseText h1 {
+.bannerText h1 {
     font-size: 2em;
     margin-bottom: 1rem;
 }
 
-.showCaseText span {
+.bannerText span {
     font-size: 1em;
     margin-bottom: 1rem;
 }
 
-.showcaseImageContainer {
+.bannerImageContainer {
     marign-left: 5rem;
     flex-basis: 30%;
 }
 
-.showcaseImage {
+.bannerImage {
     width: 100%;
     height: auto;
 }
 
-/* Showcase grid background */
-.showcaseBackground {
+/* banner grid background */
+.bannerBackground {
     position: relative;
     overflow: hidden;
 }
 
-.showcaseBackground::before {
+.bannerBackground::before {
     content: "";
     position: absolute;
 
@@ -49,12 +49,12 @@
     background: radial-gradient(circle, #00192d 0%, rgba(0,0,0,0) 90%);
 }
 
-.showcaseBackgroundFade {
+.bannerBackgroundFade {
     position: relative;
     overflow: hidden;
 }
 
-.showcaseBackgroundFade::before {
+.bannerBackgroundFade::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -140,11 +140,11 @@
 }
 
 @media screen and (max-width: 1300px) {
-    .showcase {
+    .banner {
         width: 90%;
     }
 
-    .showCaseText {
+    .bannerText {
         font-size: 1.2rem;
     }
 
@@ -158,17 +158,17 @@
 }
 
 @media screen and (max-width: 850px) {
-    .showcase {
+    .banner {
         margin-top: 5rem;
         flex-direction: column;
         width: 90%;
     }
 
-    .showCaseText {
+    .bannerText {
         margin-bottom: 3rem;
     }
 
-    .showcaseImageContainer {
+    .bannerImageContainer {
         margin-left: 0;
         flex-basis: 100%;
         width: 70%;
@@ -193,7 +193,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .showCaseText {
+    .bannerText {
         font-size: 1rem;
         margin-bottom: 1rem;
     }

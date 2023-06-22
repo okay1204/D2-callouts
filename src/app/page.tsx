@@ -1,7 +1,7 @@
 
-import { CalloutSet, getCalloutSets } from '@/utils/callouts/calloutSets';
-import HomePage from './Home';
+import { getCalloutSets } from '@/utils/callouts/calloutSets';
+import HomePage from './HomePage';
 
-export default async function Home({ calloutSets }: { calloutSets: CalloutSet }) {
+export default async function Home() {
     return <HomePage calloutSets={await getCalloutSets()} />
 }

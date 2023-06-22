@@ -38,13 +38,13 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     return (
         <main>
-            <div className={styles.showcaseBackground}>
-                <div className={styles.showcaseBackgroundFade}>
-                    <div className={styles.showcase}>
+            <div className={styles.bannerBackground}>
+                <div className={styles.bannerBackgroundFade}>
+                    <div className={styles.banner}>
                         <motion.div
                             initial={{ x: -100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
-                            className={styles.showCaseText}
+                            className={styles.bannerText}
                         >
                             <h1>Get your raid team on the same page.</h1>
                             <span>View, edit, and share callouts in an instant</span>
@@ -52,9 +52,9 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         <motion.div
                             initial={{ x: 100, opacity: 0 }}
                             whileInView={{ x: 0, opacity: 1 }}
-                            className={styles.showcaseImageContainer}
+                            className={styles.bannerImageContainer}
                         >
-                            <Image className={styles.showcaseImage} src={RaidEmblem} alt='Raid Emblem' />
+                            <Image className={styles.bannerImage} src={RaidEmblem} alt='Raid Emblem' />
                         </motion.div>
                     </div>
                 </div>
