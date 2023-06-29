@@ -32,6 +32,12 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     const router = useRouter();
 
+    useEffect(() => {
+        calloutSets.forEach(calloutSet => {
+            router.prefetch(`/callout/${calloutSet.id}`)
+        })
+    }, [])
+
     return (
         <main>
             <div className={styles.bannerBackground}>
