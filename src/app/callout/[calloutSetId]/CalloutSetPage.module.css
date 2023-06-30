@@ -59,6 +59,22 @@
     background-color: var(--primary-lighter);
 }
 
+.symbolList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 0 2rem;
+    margin: 2rem auto;
+}
+
+.symbolContainer {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+}
+
 @media screen and (max-width: 500px) {
     .activityButtonSelect {
         display: none;
@@ -66,5 +82,17 @@
 
     .activityMobileSelect {
         display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .symbolList {
+        padding: 0 0.5rem;
+        width: 100%;
+    }
+
+    .symbolContainer {
+        width: 7.5rem;
+        height: 7.5rem;
     }
 }

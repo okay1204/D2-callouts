@@ -1,8 +1,8 @@
 import 'server-only'
-import { BaseCalloutSet, RawActivity, RawCalloutSet, rawCalloutSets } from './rawCalloutSets'
-import { cache } from 'react'
-import path from 'path'
 import fs from 'fs/promises'
+import path from 'path'
+import { cache } from 'react'
+import { BaseCalloutSet, RawActivity, rawCalloutSets } from './rawCalloutSets'
 
 interface ImageReference {
     id: number
@@ -21,6 +21,7 @@ export interface Activity extends RawActivity {
 export interface CalloutSet extends BaseCalloutSet {
     activities: Activity[];
     bannerImages: ImageReference[];
+    allImages: ImageReference[];
 }
 
 
@@ -29,6 +30,8 @@ const getCalloutImages = cache(async (calloutSetId: string): Promise<CalloutImag
 
     const imageUrls = await fs.readdir(path.join(process.cwd(), '/public/images/callouts', calloutSetId))
     for (const fileName of imageUrls) {
+        if (fileName === 'banner') continue
+
         const imageParts = path.basename(fileName).split('-')
         const imageId = parseInt(imageParts[0])
         const imageName = imageParts[1]
@@ -48,6 +51,7 @@ export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
 
     for (const rawCalloutSet of rawCalloutSets) {
         const calloutImages = await getCalloutImages(rawCalloutSet.id)
+        const allImages = Object.values(calloutImages)
 
         const calloutSet: CalloutSet = {
             ...rawCalloutSet,
@@ -62,6 +66,7 @@ export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
             bannerImages: rawCalloutSet.bannerImageIds.map(imageId => {
                 return calloutImages[imageId]
             }),
+            allImages,
         }
 
         calloutSets.push(calloutSet)

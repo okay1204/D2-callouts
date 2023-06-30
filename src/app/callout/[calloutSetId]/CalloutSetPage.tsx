@@ -6,6 +6,7 @@ import DefaultErrorPage from 'next/error';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
+import Image from "next/image";
 
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
     // null means All, undefined means not loaded yet
@@ -55,7 +56,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 {calloutSet.activities.map(activity => (
                     <button
                         key={activity.id}
-                        className={`${styles.activitySelectButton} ${selectedActivity == activity ? styles.selectedActivity : ''}`}
+                        className={`${styles.activitySelectButton} ${selectedActivity && selectedActivity.id == activity.id ? styles.selectedActivity : ''}`}
                         onClick={() => changeActivity(activity)}
                     >
                         {activity.name}
@@ -74,8 +75,18 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             </select>
 
 
-            <div className={styles.calloutImageList}>
-                
+            <div className={styles.symbolList}>
+                {(selectedActivity ? selectedActivity.images : calloutSet.allImages).map(imageReference => (
+                    <div key={imageReference.id} className={styles.symbolContainer}>
+                        <Image
+                            fill={true}
+                            sizes="10rem, (max-width: 600px) 7.5rem"
+                            className={styles.symbol}
+                            src={imageReference.url}
+                            alt='Callout Set Symbol'
+                        />
+                    </div>
+                ))}
             </div>
         </div>
     )
