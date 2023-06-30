@@ -46,33 +46,40 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     return (
         <div>
             <h1 className={styles.title}>{calloutSet.name}</h1>
-            <div className={styles.activityButtonSelect}>
-                <button
-                    className={`${styles.activitySelectButton} ${selectedActivity == null ? styles.selectedActivity : ''}`}
-                    onClick={() => changeActivity(null)}
-                >
-                    All
-                </button>
-                {calloutSet.activities.map(activity => (
-                    <button
-                        key={activity.id}
-                        className={`${styles.activitySelectButton} ${selectedActivity && selectedActivity.id == activity.id ? styles.selectedActivity : ''}`}
-                        onClick={() => changeActivity(activity)}
-                    >
-                        {activity.name}
-                    </button>
-                ))}
-            </div>
-            <select
-                className={styles.activityMobileSelect}
-                value={selectedActivity ? selectedActivity.id : 'all'}
-                onChange={e => changeActivity(calloutSet.activities.find(activity => activity.id == e.target.value) ?? null)}
-            >
-                <option value="all">All</option>
-                {calloutSet.activities.map(activity => (
-                    <option key={activity.id} value={activity.id}>{activity.name}</option>
-                ))}
-            </select>
+            {
+                // We should only show the activity buttons if there is more than one activity available
+                calloutSet.activities.length > 1 && (
+                    <>
+                        <div className={styles.activityButtonSelect}>
+                            <button
+                                className={`${styles.activitySelectButton} ${selectedActivity == null ? styles.selectedActivity : ''}`}
+                                onClick={() => changeActivity(null)}
+                            >
+                                All
+                            </button>
+                            {calloutSet.activities.map(activity => (
+                                <button
+                                    key={activity.id}
+                                    className={`${styles.activitySelectButton} ${selectedActivity && selectedActivity.id == activity.id ? styles.selectedActivity : ''}`}
+                                    onClick={() => changeActivity(activity)}
+                                >
+                                    {activity.name}
+                                </button>
+                            ))}
+                        </div>
+                        <select
+                            className={styles.activityMobileSelect}
+                            value={selectedActivity ? selectedActivity.id : 'all'}
+                            onChange={e => changeActivity(calloutSet.activities.find(activity => activity.id == e.target.value) ?? null)}
+                        >
+                            <option value="all">All</option>
+                            {calloutSet.activities.map(activity => (
+                                <option key={activity.id} value={activity.id}>{activity.name}</option>
+                            ))}
+                        </select>
+                    </>
+                )
+            }
 
 
             <div className={styles.symbolList}>
