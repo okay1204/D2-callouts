@@ -50,7 +50,6 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
 
     useEffect(() => {
         if (typeof selectedActivity == 'undefined' || !calloutSet) return
-        console.log(loadedImages.length, imageList.length)
 
         // Animate the symbol list if all images are loaded
         if (scope.current && loadedImages.length >= imageList.length) {
