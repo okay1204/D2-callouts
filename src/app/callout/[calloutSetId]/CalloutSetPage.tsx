@@ -6,7 +6,7 @@ import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
@@ -15,24 +15,25 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const [scope, animate] = useAnimate()
     const router = useRouter()
 
-    if (!calloutSet) return <DefaultErrorPage statusCode={404} />
-
-    const changeActivity = (activity: Activity | null) => {
+    
+    const changeActivity = useCallback((activity: Activity | null) => {
         setSelectedActivity(activity)
-
+        
         // set query params to reflect the selected activity, or remove them if null
         router.replace(activity ? `${window.location.pathname}?activity=${activity.id}` : window.location.pathname)
-    }
-
+    }, [router])
+    
     useEffect(() => {
-        // read query params to see if activity is specified
-        const urlParams = new URLSearchParams(window.location.search);
-        const activityId = urlParams.get('activity');
-        const activity = calloutSet.activities.find(activity => activity.id == activityId)
-
-        changeActivity(activity ?? null)
-    }, [])
-
+        if (calloutSet) {
+            // read query params to see if activity is specified
+            const urlParams = new URLSearchParams(window.location.search);
+            const activityId = urlParams.get('activity');
+            const activity = calloutSet.activities.find(activity => activity.id == activityId)
+            
+            changeActivity(activity ?? null)
+        }
+    }, [calloutSet, changeActivity])
+    
     useEffect(() => {
         // Animate the symbol list
         if (scope.current) {
@@ -41,8 +42,9 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 [`.${styles.symbol}`, { opacity: 1 }, { duration: 0.3, delay: stagger(0.02) }],
             ])
         }
-    }, [selectedActivity])
-
+    }, [animate, scope, selectedActivity])
+    
+    if (!calloutSet) return <DefaultErrorPage statusCode={404} />
     if (selectedActivity === undefined) return <Loading />
     
     return (

@@ -36,7 +36,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
         calloutSets.forEach(calloutSet => {
             router.prefetch(`/callout/${calloutSet.id}`)
         })
-    }, [])
+    }, [calloutSets, router])
 
     return (
         <div>
