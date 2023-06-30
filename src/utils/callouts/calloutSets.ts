@@ -4,7 +4,7 @@ import path from 'path'
 import { cache } from 'react'
 import { BaseCalloutSet, RawActivity, rawCalloutSets } from './rawCalloutSets'
 
-interface ImageReference {
+export interface ImageReference {
     id: number
     name: string
     url: string

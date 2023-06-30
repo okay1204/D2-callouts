@@ -77,7 +77,11 @@ select {
     appearance: none !important;
     border: none;
     padding-right: 2rem !important;
-}  
+}
+
+.hide {
+    display: none !important;
+}
 
 @media (max-width: 1400px) {
     :root {
