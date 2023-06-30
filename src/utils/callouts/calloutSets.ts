@@ -14,7 +14,7 @@ interface CalloutImageDictionary {
     [imageId: number]: ImageReference
 }
 
-interface Activity extends RawActivity {
+export interface Activity extends RawActivity {
     images: ImageReference[];
 }
 

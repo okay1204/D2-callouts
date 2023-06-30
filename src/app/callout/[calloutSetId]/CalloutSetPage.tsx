@@ -1,21 +1,22 @@
 'use client'
 
-import { CalloutSet } from "@/utils/callouts/calloutSets";
+import { Activity, CalloutSet } from "@/utils/callouts/calloutSets";
 import styles from './CalloutSetPage.module.css'
 import DefaultErrorPage from 'next/error';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
-    const [selectedActivity, setSelectedActivity] = useState<string | undefined>(undefined)
+    // null means All, undefined means not loaded yet
+    const [selectedActivity, setSelectedActivity] = useState<Activity | null | undefined >(undefined)
     const router = useRouter()
 
     if (!calloutSet) return <DefaultErrorPage statusCode={404} />
 
-    const changeActivity = (activity: string) => {
+    const changeActivity = (activity: Activity | null) => {
         setSelectedActivity(activity)
         // Set query params
-        if (activity != 'all') {
+        if (activity) {
             router.replace(`${window.location.pathname}?activity=${activity}`)
         }
         else {
@@ -27,13 +28,14 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     useEffect(() => {
         // read query params to see if activity is specified
         const urlParams = new URLSearchParams(window.location.search);
-        const activity = urlParams.get('activity');
+        const activityId = urlParams.get('activity');
+        const activity = calloutSet.activities.find(activity => activity.id == activityId)
 
-        if (activity && calloutSet.activities.find(a => a.id == activity)) {
+        if (activity) {
             changeActivity(activity)
         }
         else {
-            changeActivity('all')
+            changeActivity(null)
         }
     }, [])
     
@@ -42,16 +44,16 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             <h1 className={styles.title}>{calloutSet.name}</h1>
             <div className={styles.activityButtonSelect}>
                 <button
-                    className={`${styles.activitySelectButton} ${selectedActivity == 'all' ? styles.selectedActivity : ''}`}
-                    onClick={() => changeActivity('all')}
+                    className={`${styles.activitySelectButton} ${selectedActivity == null ? styles.selectedActivity : ''}`}
+                    onClick={() => changeActivity(null)}
                 >
                     All
                 </button>
                 {calloutSet.activities.map(activity => (
                     <button
                         key={activity.id}
-                        className={`${styles.activitySelectButton} ${selectedActivity == activity.id ? styles.selectedActivity : ''}`}
-                        onClick={() => changeActivity(activity.id)}
+                        className={`${styles.activitySelectButton} ${selectedActivity == activity ? styles.selectedActivity : ''}`}
+                        onClick={() => changeActivity(activity)}
                     >
                         {activity.name}
                     </button>
@@ -59,14 +61,19 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             </div>
             <select
                 className={styles.activityMobileSelect}
-                value={selectedActivity}
-                onChange={e => changeActivity(e.target.value)}
+                value={selectedActivity ? selectedActivity.id : 'all'}
+                onChange={e => changeActivity(calloutSet.activities.find(activity => activity.id == e.target.value) ?? null)}
             >
                 <option value="all">All</option>
                 {calloutSet.activities.map(activity => (
                     <option key={activity.id} value={activity.id}>{activity.name}</option>
                 ))}
             </select>
+
+
+            <div className={styles.calloutImageList}>
+                
+            </div>
         </main>
     )
 }
