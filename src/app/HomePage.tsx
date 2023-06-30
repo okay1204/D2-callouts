@@ -97,7 +97,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         </div>
                         <div className={styles.calloutSetSymbols}>
                             {calloutSet.bannerImages.map(imageReference => (
-                                <div className={`${styles.calloutSetSymbolContainer} ${calloutSet.whiteBannerSymbolFilter ? styles.calloutSetWhiteFilter : ''}`} key={imageReference.name}>
+                                <div className={styles.calloutSetSymbolContainer} key={imageReference.name}>
                                     <Image
                                         fill={true}
                                         sizes="7rem, (max-width: 850px) 6rem, (max-width: 400px) 4rem"

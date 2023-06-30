@@ -129,10 +129,6 @@
     opacity: 0.9;
 }
 
-.calloutSetWhiteFilter {
-    filter: brightness(0) invert(1);
-}
-
 @media screen and (max-width: 1500px) {
     .calloutList {
         width: 80%;

@@ -1,7 +1,6 @@
 export interface BaseCalloutSet {
     name: string;
     id: string;
-    whiteBannerSymbolFilter?: boolean;
     bannerImageIds: number[];
 }
 
@@ -53,8 +52,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'hive-runes',
-        bannerImageIds: [12, 14, 15],
-        whiteBannerSymbolFilter: true
+        bannerImageIds: [12, 14, 15]
     },
     {
         name: 'Glyphs',
