@@ -19,15 +19,18 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
     )
 }
 
+const title = 'D2 Callouts'
+const description = 'Cooperate with your team and master your raid callouts. View, edit, and share callouts for Destiny 2 raids and dungeons.'
+
 export const metadata: Metadata = {
-    title: 'D2 Callouts',
-    description: 'Cooperate with your team and master your raid callouts',
+    title: title,
+    description: description,
     metadataBase: new URL('https://d2callouts.com'),
     openGraph: {
         type: 'website',
-        title: 'D2 Callouts',
+        title: title,
         siteName: 'D2 Callouts',
-        description: 'Cooperate with your team and master your raid callouts',         
+        description: description,         
     },
     twitter: {
         creator: '@okay2996',
