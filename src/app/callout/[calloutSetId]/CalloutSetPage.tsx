@@ -89,6 +89,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                         <div className={styles.symbolImageContainer}>
                             <Image
                                 fill={true}
+                                priority={true}
                                 sizes="10rem, (max-width: 600px) 7.5rem"
                                 className={styles.symbol}
                                 src={imageReference.url}
