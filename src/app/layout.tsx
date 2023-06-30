@@ -29,6 +29,9 @@ export const metadata: Metadata = {
         siteName: 'D2 Callouts',
         description: 'Cooperate with your team and master your raid callouts',         
     },
+    twitter: {
+        creator: '@okay2996',
+    },
     viewport: 'width=device-width, initial-scale=1',
     applicationName: 'D2 Callouts',
     authors: [{ name: 'okay1204', url: 'https://linktr.ee/okay1204'}, { name: 'Shadowttk', url: 'https://linktr.ee/shadowttk'}],
