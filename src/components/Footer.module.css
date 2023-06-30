@@ -1,0 +1,39 @@
+.footer {
+    background-color: var(--background-tertiary);
+    border-top: 1px solid white;
+}
+
+.footerContent {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.imageContainer {
+    position: relative;
+    width: 3rem;
+    margin-right: 1rem;
+}
+
+.image {
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+}
+
+.footerText {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerText a {
+    color: var(--text-secondary-bright);
+}
+
+.footerText a:hover {
+    text-decoration: underline;
+}
