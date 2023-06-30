@@ -9,7 +9,9 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
         <html>
             <body className={styles.webpageContainer}>
                 <Navbar />
-                {children}
+                <main>
+                    {children}
+                </main>
             </body>
         </html>
     )

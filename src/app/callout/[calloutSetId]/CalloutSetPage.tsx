@@ -5,6 +5,7 @@ import styles from './CalloutSetPage.module.css'
 import DefaultErrorPage from 'next/error';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
     // null means All, undefined means not loaded yet
@@ -17,7 +18,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         setSelectedActivity(activity)
         // Set query params
         if (activity) {
-            router.replace(`${window.location.pathname}?activity=${activity}`)
+            router.replace(`${window.location.pathname}?activity=${activity.id}`)
         }
         else {
             // Remove query params if activity is 'all'
@@ -38,9 +39,11 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             changeActivity(null)
         }
     }, [])
+
+    if (selectedActivity === undefined) return <Loading />
     
     return (
-        <main>
+        <div>
             <h1 className={styles.title}>{calloutSet.name}</h1>
             <div className={styles.activityButtonSelect}>
                 <button
@@ -74,6 +77,6 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             <div className={styles.calloutImageList}>
                 
             </div>
-        </main>
+        </div>
     )
 }

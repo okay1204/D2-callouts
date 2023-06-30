@@ -39,7 +39,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
     }, [])
 
     return (
-        <main>
+        <div>
             <div className={styles.bannerBackground}>
                 <div className={styles.bannerBackgroundFade}>
                     <div className={styles.banner}>
@@ -111,6 +111,6 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                     </motion.div>
                 ))}
             </div>
-        </main>
+        </div>
     )
 }
