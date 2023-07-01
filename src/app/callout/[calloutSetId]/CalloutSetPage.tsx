@@ -51,15 +51,18 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         const imageReference = calloutSet.allImages.find(image => image.id == imageId)
         if (!imageReference) return
 
-        if (name == imageReference.name) {
-            const newCustomNames = { ...customNames }
-            delete newCustomNames[imageId]
-            setCustomNames(newCustomNames)
-        }
-        else {
-            // Add the query param
-            setCustomNames(prevCustomNames => ({ ...prevCustomNames, [imageId]: name }));
-        }
+        setCustomNames(prevCustomNames => {
+            const newCustomNames = { ...prevCustomNames }
+            if (name == imageReference.name) {
+                delete newCustomNames[imageId]
+            }
+            else {
+                newCustomNames[imageId] = name
+            }
+
+            localStorage.setItem(`${calloutSet.id}.customNames`, JSON.stringify(newCustomNames))
+            return newCustomNames
+        })
     };
 
     useEffect(() => {
@@ -77,15 +80,26 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             // Convert urlParams.entries() to an array and iterate over it
             Array.from(urlParams.entries()).forEach(([key, value]) => {
                 const imageId = parseInt(key)
+                if (isNaN(imageId)) return
+
                 const imageReference = calloutSet.allImages.find(image => image.id == imageId)
                 if (!imageReference) return
 
+                // If the name is the same as the default, remove it from the custom names
                 if (imageReference.name != value) {
                     customNames[imageId] = value
                 }
             })
 
             setCustomNames(customNames)
+
+            // if the callout set is not custom, attempt to load the custom names from local storage
+            if (!urlParams.has('isCustom') || urlParams.get('isCustom') != 'true') {
+                const customNamesJson = localStorage.getItem(`${calloutSet.id}.customNames`)
+                if (customNamesJson) {
+                    setCustomNames(JSON.parse(customNamesJson))
+                }
+            }
         }
     }, [calloutSet, changeActivity])
 
@@ -166,6 +180,9 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     for (const [imageId, name] of Object.entries(customNames)) {
                         urlParams.set(imageId, name)
                     }
+                    
+                    // Signify that this is a custom callout set
+                    urlParams.set('isCustom', 'true')
 
                     navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
                     .then(() => {
