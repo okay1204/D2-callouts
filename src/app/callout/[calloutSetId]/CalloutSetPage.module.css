@@ -59,6 +59,22 @@
     background-color: var(--primary-lighter);
 }
 
+.shareButton {
+    font-size: 1.3rem;
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: var(--text-primary);
+    background-color: var(--primary-darker);
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.shareButton:hover {
+    background-color: var(--primary-lighter);
+}
+
 .symbolList {
     display: flex;
     flex-wrap: wrap;
@@ -66,19 +82,31 @@
     align-items: center;
     width: 80%;
     padding: 0 2rem;
-    margin: 2rem auto;
+    margin: 1rem auto;
 }
 
 .symbol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
 }
 
 .symbolImageContainer {
     position: relative;
     width: 10rem;
     height: 10rem;
-    margin: 1rem;
+    margin: 2rem;
 }
 
+.symbolName {
+    text-align: center;
+    width: 100%;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    border-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--primary-lighter) 49%, var(--primary-lighter) 51%, rgba(25,75,115,0) 100%) 7 / 0 0 2px 0 stretch;
+}
 
 @media screen and (max-width: 500px) {
     .activityButtonSelect {

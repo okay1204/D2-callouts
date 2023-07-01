@@ -34,7 +34,7 @@ const getCalloutImages = cache(async (calloutSetId: string): Promise<CalloutImag
 
         const imageParts = path.basename(fileName).split('-')
         const imageId = parseInt(imageParts[0])
-        const imageName = imageParts[1]
+        const imageName = imageParts[1].split('.')[0]
 
         calloutImages[imageId] = {
             id: imageId,

@@ -9,23 +9,56 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 
+interface CustomNames {
+    [imageId: number]: string
+}
+
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
     // null means All, undefined means not loaded yet
     const [selectedActivity, setSelectedActivity] = useState<Activity | null | undefined>(undefined)
     const [loadedImages, setLoadedImages] = useState<number[]>([])
+    const [customNames, setCustomNames] = useState<CustomNames>({})
+    const [copyTimeout, setCopyTimeout] = useState<number | null>(null)
     const [scope, animate] = useAnimate()
     const router = useRouter()
 
     const changeActivity = useCallback((activity: Activity | null) => {
         setSelectedActivity(activity)
 
+        const urlParams = new URLSearchParams(window.location.search);
+        if (activity) {
+            urlParams.set('activity', activity.id)
+        }
+        else {
+            urlParams.delete('activity')
+        }
+
         // set query params to reflect the selected activity, or remove them if null
-        router.replace(activity ? `${window.location.pathname}?activity=${activity.id}` : window.location.pathname)
+        router.replace(`${window.location.pathname}?${urlParams.toString()}`)
     }, [router])
 
     const handleImageLoad = (imageId: number) => {
         if (!loadedImages.includes(imageId)) {
             setLoadedImages((prevLoadedImages) => [...prevLoadedImages, imageId]);
+        }
+    };
+
+    const handleNameChange = (imageId: number, name: string) => {
+        // If the name is the same as the default, remove it from the custom names
+        // Otherwise, add it to the custom names
+        if (!calloutSet) return
+
+        const imageReference = calloutSet.allImages.find(image => image.id == imageId)
+        if (!imageReference) return
+
+        if (name == imageReference.name) {
+            const newCustomNames = { ...customNames }
+            delete newCustomNames[imageId]
+            setCustomNames(newCustomNames)
+        }
+        else {
+            // Add the query param
+            setCustomNames(prevCustomNames => ({ ...prevCustomNames, [imageId]: name }));
         }
     };
 
@@ -37,6 +70,22 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             const activity = calloutSet.activities.find(activity => activity.id == activityId)
 
             changeActivity(activity ?? null)
+
+            // also populate custom names
+            const customNames: CustomNames = {}
+
+            // Convert urlParams.entries() to an array and iterate over it
+            Array.from(urlParams.entries()).forEach(([key, value]) => {
+                const imageId = parseInt(key)
+                const imageReference = calloutSet.allImages.find(image => image.id == imageId)
+                if (!imageReference) return
+
+                if (imageReference.name != value) {
+                    customNames[imageId] = value
+                }
+            })
+
+            setCustomNames(customNames)
         }
     }, [calloutSet, changeActivity])
 
@@ -101,6 +150,31 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     </>
                 )
             }
+            <button
+                className={styles.shareButton}
+                onClick={() => {
+                    if (copyTimeout != null) return
+
+                    const urlParams = new URLSearchParams(window.location.search);
+
+                    // First clear all custom names from the url
+                    for (const imageId of Object.keys(calloutSet.allImages)) {
+                        urlParams.delete(imageId)
+                    }
+
+                    // Then add the custom names
+                    for (const [imageId, name] of Object.entries(customNames)) {
+                        urlParams.set(imageId, name)
+                    }
+
+                    navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
+                    .then(() => {
+                        setCopyTimeout(window.setTimeout(() => setCopyTimeout(null), 2000))
+                    })
+                }}
+            >
+                {copyTimeout == null ? 'Share 📥' : 'Copied! 📥'}
+            </button>
 
             {loadedImages.length < imageList.length && <Loading />}
             <div className={`${styles.symbolList} ${loadedImages.length < imageList.length ? 'hide' : ''}`} ref={scope}>
@@ -117,6 +191,14 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                                 alt='Callout Set Symbol'
                             />
                         </div>
+
+                        <input
+                            type="text"
+                            className={styles.symbolName}
+                            // Display the custom name if it exists, otherwise use the default name
+                            value={customNames[imageReference.id] ?? imageReference.name}
+                            onChange={e => handleNameChange(imageReference.id, e.target.value)}
+                        />
                     </div>
                 ))}
             </div>
