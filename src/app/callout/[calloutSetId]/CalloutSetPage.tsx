@@ -202,7 +202,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                                 fill={true}
                                 priority={true}
                                 onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
-                                sizes="10rem, (max-width: 600px) 7.5rem"
+                                sizes="10rem, (max-width: 600px) 7.5rem, (max-width: 570px) 6rem"
                                 className={styles.symbol}
                                 src={imageReference.url}
                                 alt='Callout Set Symbol'

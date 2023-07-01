@@ -118,7 +118,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     .symbolList {
         padding: 0 0.5rem;
         width: 100%;
@@ -127,5 +127,17 @@
     .symbolImageContainer {
         width: 7.5rem;
         height: 7.5rem;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .symbolList {
+        padding: 0 0.2rem;
+        width: 100%;
+    }
+
+    .symbolImageContainer {
+        width: 6rem;
+        height: 6rem;
     }
 }
