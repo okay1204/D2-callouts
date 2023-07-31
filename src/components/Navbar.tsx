@@ -1,6 +1,7 @@
 'use client'
 
 import FullLogo from '@/images/full-logo.png'
+import Logo from '@/images/logo.png'
 import KofiButton from "kofi-button"
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +13,12 @@ export default function Navbar() {
             <Link href="/" className={styles.logoContainer}>
                 <Image
                     src={FullLogo}
-                    className={styles.logo}
+                    className={`${styles.logo} ${styles.fullLogo}`}
+                    alt="D2 Callouts Logo"
+                />
+                <Image
+                    src={Logo}
+                    className={`${styles.logo} ${styles.logoIcon}`}
                     alt="D2 Callouts Logo"
                 />
             </Link>

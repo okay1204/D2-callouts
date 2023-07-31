@@ -1,8 +1,7 @@
 import Footer from '@/components/Footer';
-import './globals.css';
 import styles from './RootLayout.module.css';
+import './globals.css';
 
-import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 
 export default function RootLayout({children}: {children: React.ReactNode[]}) {

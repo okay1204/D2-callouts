@@ -19,6 +19,10 @@
     opacity: 0.8;
 }
 
+.logoIcon {
+    display: none;
+}
+
 .logo {
     width: auto;
     height: 100%;
@@ -26,8 +30,14 @@
 
 @media (max-width: 768px) {
     .nav {
-        flex-direction: column;
-        justify-content: center;
         padding: 1rem 0;
+    }
+
+    .logoIcon {
+        display: block;
+    }
+
+    .fullLogo {
+        display: none;
     }
 }

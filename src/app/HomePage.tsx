@@ -116,7 +116,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                         <Image
                                             fill={true}
-                                            sizes="7rem, (max-width: 850px) 6rem, (max-width: 400px) 4rem"
+                                            sizes="7rem, (max-width: 850px) 4rem, (max-width: 450px) 3rem"
                                             className={styles.calloutSetSymbol}
                                             src={calloutSet.bannerImage.url}
                                             alt='Callout Set Symbol'
@@ -124,7 +124,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     </div>
                                     <div className={styles.calloutSetText}>
                                         <h2>{calloutSet.name}</h2>
-                                        <ul>
+                                        <ul className={styles.calloutSetActivityList}>
                                             {calloutSet.activities.map(activity => (
                                                 <Link
                                                     key={activity.name}    
