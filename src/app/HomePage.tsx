@@ -116,7 +116,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                         <Image
                                             fill={true}
-                                            sizes="7rem, (max-width: 850px) 4rem, (max-width: 450px) 3rem"
+                                            sizes="7rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
                                             className={styles.calloutSetSymbol}
                                             src={calloutSet.bannerImage.url}
                                             alt='Callout Set Symbol'

@@ -121,13 +121,11 @@
     height: 180px;
     padding: 1rem;
     cursor: pointer;
-    opacity: 0.9;
     transition: all 0.2s ease-in-out;
 }
 
 .calloutSet:hover {
     border: 1px var(--text-secondary-bright) solid;
-    opacity: 1;
 }
 
 .calloutSetText {
@@ -240,8 +238,8 @@
     .calloutSetSymbolContainer {
         position: absolute;
         margin: 0.5rem 0.5rem;
-        width: 4rem;
-        height: 4rem;
+        width: 5rem;
+        height: 5rem;
     }
 
     .calloutSetActivityList {
@@ -259,13 +257,22 @@
     }
 
     .calloutSetSymbolContainer {
-        position: relative;
         margin: 0.1rem;
-        width: 3rem;
-        height: 3rem;
+        width: 4rem;
+        height: 4rem;
     }
 
     .calloutSetText h2 {
         font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .calloutSet {
+        justify-content: space-between;
+    }
+
+    .calloutSetSymbolContainer {
+        position: relative;
     }
 }
