@@ -20,7 +20,7 @@ export interface Activity extends RawActivity {
 
 export interface CalloutSet extends BaseCalloutSet {
     activities: Activity[];
-    bannerImages: ImageReference[];
+    bannerImage: ImageReference;
     allImages: ImageReference[];
 }
 
@@ -63,9 +63,7 @@ export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
                     }),
                 }
             }),
-            bannerImages: rawCalloutSet.bannerImageIds.map(imageId => {
-                return calloutImages[imageId]
-            }),
+            bannerImage: calloutImages[rawCalloutSet.bannerImageId],
             allImages,
         }
 

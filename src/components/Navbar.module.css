@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    border-bottom: 1rem solid var(--background);
-    background-color: var(--background);
+    padding: 2rem;
+    padding-top: 1rem;
+    background-color: transparent;
+    z-index: 100;
 }
 
 .logoContainer {

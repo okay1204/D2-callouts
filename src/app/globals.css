@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800;900&family=Roboto&display=swap');
 
 :root {
     --background: #02050e;
@@ -19,7 +18,7 @@
 
     --tertiary: #E4FDE1;
 
-    --font-title: Kanit, Arial, sans-serif;
+    --font-title: Montserrat, Arial, sans-serif;
     --font-primary: Roboto, Verdana, sans-serif
 }
 

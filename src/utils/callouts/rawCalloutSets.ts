@@ -1,7 +1,7 @@
 export interface BaseCalloutSet {
     name: string;
     id: string;
-    bannerImageIds: number[];
+    bannerImageId: number;
 }
 
 export interface RawActivity {
@@ -30,7 +30,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'wish-symbols',
-        bannerImageIds: [0, 11, 15]
+        bannerImageId: 15
     },
     {
         name: 'Hive Runes',
@@ -52,7 +52,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'hive-runes',
-        bannerImageIds: [12, 14, 15]
+        bannerImageId: 15
     },
     {
         name: 'Glyphs',
@@ -66,6 +66,6 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'glyphs',
-        bannerImageIds: [11, 23, 25]
+        bannerImageId: 10
     },
 ];

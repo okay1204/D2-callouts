@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
+import Navbar from "@/components/Navbar";
 
 interface CustomNames {
     [imageId: number]: string
@@ -129,6 +130,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
 
     return (
         <div>
+            <Navbar />
             <h1 className={styles.title}>{calloutSet.name}</h1>
             {
                 // We should only show the activity buttons if there is more than one activity available
