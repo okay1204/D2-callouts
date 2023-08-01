@@ -38,7 +38,12 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
                         exit='hidden'
                         transition={{ duration: 0.5 }}
                     >
-                        <Image src={images[index]} alt="Slideshow Image" className={styles.image} />
+                        <Image
+                            src={images[index]}
+                            alt="Slideshow Image"
+                            className={styles.image} 
+                            priority={true}
+                        />
                     </motion.div>
                     <motion.div
                         key={nextIndex}
@@ -49,7 +54,12 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
                         exit='hidden'
                         transition={{ duration: 0.5 }}
                     >
-                        <Image src={images[nextIndex]} alt="Slideshow Image" className={styles.image} />
+                        <Image
+                            src={images[nextIndex]}
+                            alt="Slideshow Image"
+                            className={styles.image}
+                            priority={true}
+                        />
                     </motion.div>
                 </AnimatePresence>
             </div>
