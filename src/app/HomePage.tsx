@@ -108,7 +108,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     variants={calloutSetVariants}
                                     className={styles.calloutSet}
                                     style={{
-                                        background: `url('/images/callouts/${calloutSet.id}/banner/background.png') center center / cover`
+                                        background: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('/images/callouts/${calloutSet.id}/banner/background.png') center center / cover`
                                     }}
                                     key={calloutSet.id}
                                     onClick={() => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
