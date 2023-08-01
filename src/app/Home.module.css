@@ -85,12 +85,13 @@
 
 .calloutSetImageWrapper {
     position: relative;
-    flex-basis: 40%;
+    flex-basis: 32%;
 }
 
 .calloutSetImage {
     width: 100%;
     height: 100%;
+    border-radius: 10%;
     object-fit: contain;
 }
 
