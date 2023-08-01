@@ -1,5 +1,6 @@
 import { AnimatePresence, Variants, motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from './Slideshow.module.css';
 
@@ -15,6 +16,14 @@ const variants: Variants = {
 export default function Slideshow({ images, className = '', interval = 5000 }: { images: StaticImageData[], className?: string, interval?: number }) {
     const [index, setIndex] = useState(0);
     const [nextIndex, setNextIndex] = useState(1);
+    const router = useRouter();
+
+    // Preload all images before rendering the slideshow
+    useEffect(() => {
+        images.forEach(image => {
+            router.prefetch(image.src);
+        });
+    }, [images, router]);
 
     useEffect(() => {
         const timer = setInterval(() => {
