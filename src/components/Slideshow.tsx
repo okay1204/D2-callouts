@@ -20,7 +20,7 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
     useEffect(() => {
         const timer = setInterval(() => {
             setNextIndex((nextIndex + 1) % images.length);
-            setIndex(nextIndex);
+            setIndex(nextIndex % images.length);
         }, interval);
 
         return () => clearInterval(timer);
