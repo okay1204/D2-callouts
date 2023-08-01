@@ -49,6 +49,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                     src={SpaceBackground}
                     alt='Space background'
                     fill={true}
+                    priority={true}
                     draggable={false}
                 />
                 <Navbar />
