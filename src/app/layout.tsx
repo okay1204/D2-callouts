@@ -18,7 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
 }
 
 const title = 'D2 Callouts'
-const description = 'Cooperate with your team and master your raid callouts. View, edit, and share callouts for Destiny 2 raids and dungeons.'
+const description = 'Cooperate with your team and master your raid callouts. View, customize, and share callouts for Destiny 2 raids and dungeons.'
 
 export const metadata: Metadata = {
     title: title,
