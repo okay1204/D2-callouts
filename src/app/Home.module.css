@@ -122,7 +122,7 @@
     height: 180px;
     padding: 1rem;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: border 0.2s ease-in-out;
 }
 
 .calloutSet:hover {

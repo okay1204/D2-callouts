@@ -16,7 +16,7 @@ import styles from './Home.module.css'
 const calloutSetVariants: Variants = {
     visible: {
         y: 0,
-        opacity: 1.01,
+        opacity: 1,
         transition: {
             y: {duration: 0.1}
         },
