@@ -12,6 +12,7 @@ const variants: Variants = {
     }
 }
 
+const transitionTime = 1;
 export default function Slideshow({ images, className = '', interval = 5000 }: { images: StaticImageData[], className?: string, interval?: number }) {
     const [index, setIndex] = useState(0);
     const [nextIndex, setNextIndex] = useState(1);
@@ -19,7 +20,7 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
     useEffect(() => {
         const timer = setInterval(() => {
             setNextIndex((nextIndex + 1) % images.length);
-            setIndex(nextIndex % images.length);
+            setIndex(nextIndex);
         }, interval);
 
         return () => clearInterval(timer);
@@ -47,7 +48,7 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
                         initial='hidden'
                         animate='visible'
                         exit='hidden'
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: transitionTime }}
                     >
                         <Image
                             src={images[index]}
@@ -62,7 +63,7 @@ export default function Slideshow({ images, className = '', interval = 5000 }: {
                         initial='hidden'
                         animate='visible'
                         exit='hidden'
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: transitionTime }}
                     >
                         <Image
                             src={images[nextIndex]}

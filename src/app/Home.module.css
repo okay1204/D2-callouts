@@ -10,7 +10,7 @@
 
 .bannerText {
     flex-basis: 35%;
-    font-size: 1.25rem;
+    font-size: 1.6rem;
 }
 
 .bannerText h1 {
@@ -88,16 +88,29 @@
 }
 
 .calloutSet {
+    position: relative;
     display: flex;
     align-items: center;
     border: 1px white solid;
     border-radius: 8px;
     margin-bottom: 1rem;
     width: 100%;
-    height: 180px;
+    height: 150px;
     padding: 1rem;
     cursor: pointer;
     transition: border 0.2s ease-in-out;
+}
+
+.calloutSetBackground {
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.5);
+    user-select: none;
+    transition: filter 0.2s ease-in-out;
+}
+
+.calloutSet:hover .calloutSetBackground {
+    filter: brightness(0.45);
 }
 
 .calloutSet:hover {
@@ -112,7 +125,13 @@
     font-size: 1.7rem;
 }
 
-.calloutSetActivityList li {
+.calloutSetActivityList {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.calloutSetActivityLink {
     font-size: 1.2rem;
     color: #C0C8E3;
     list-style: inside;
@@ -120,19 +139,47 @@
     text-decoration-color: var(--text-secondary-dark);
 }
 
-.calloutSetActivityList li:hover {
+.calloutSetActivityLink:hover {
     text-decoration: underline;
     color: var(--text-secondary-bright);
     text-decoration-color: var(--text-secondary-bright);
+    transform: translate(10px);
 }
 
 .calloutSetSymbolContainer {
     position: relative;
-    width: 7rem;
-    height: 7rem;
-    margin: 0 1.5rem;
+    width: 5.25rem;
+    height: 5.25rem;
+    margin-left: 0.5rem;
+    margin-right: 1.5rem;
     filter: drop-shadow(1rem 1rem 20px black);
     opacity: 0.9;
+}
+
+.calloutSetArrow {
+    position: absolute;
+    opacity: 0;
+    width: 35px;
+    height: 35px;
+    top: auto;
+    bottom: auto;
+    right: 50px;
+    transition: all 0.2s ease-in-out;
+}
+
+.calloutSet:hover .calloutSetArrow {
+    opacity: 1;
+    right: 30px;
+}
+
+.calloutSetArrow * {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 2100px) {
+    .bannerText {
+        font-size: 1.25rem;
+    }
 }
 
 @media screen and (max-width: 1500px) {
@@ -203,6 +250,10 @@
         height: 130px;
     }
 
+    .calloutSetLeft {
+        flex-basis: 100%;
+    }
+
     .calloutSetText {
         margin: 0 auto;
     }
@@ -240,6 +291,14 @@
 
     .calloutSetText h2 {
         font-size: 1.2rem;
+    }
+
+    .calloutSetArrow {
+        right: 30px;
+    }
+
+    .calloutSet:hover .calloutSetArrow {
+        right: 10px;
     }
 }
 
