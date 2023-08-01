@@ -1,13 +1,19 @@
 'use client'
 
 import Navbar from '@/components/Navbar'
+import Slideshow from '@/components/Slideshow'
+import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
+import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
+import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
+import OneThousandVoices from '@/images/home-carousel/one-thousand-voices.png'
+import RivenLastWish from '@/images/home-carousel/riven-last-wish.png'
+import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
 import PlanetsBackground from '@/images/planets-background.png'
 import RaidEmblem from '@/images/raid-emblem.png'
 import SpaceBackground from '@/images/space-background.png'
-import WitnessWitnessing from '@/images/witness-witnessing.png'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { Variants, motion } from "framer-motion"
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
@@ -26,6 +32,8 @@ const calloutSetVariants: Variants = {
         opacity: 0,
     },
 }
+
+const carouselImages: StaticImageData[] = [WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, OneThousandVoices, RivenLastWish];
 
 export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] }) {
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
@@ -90,13 +98,9 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                     <motion.div
                         initial={{ x: -100, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
-                        className={styles.calloutSetImageWrapper}
+                        className={styles.calloutSetSlideshowWrapper}
                     >
-                        <Image
-                            className={styles.calloutSetImage}
-                            src={WitnessWitnessing}
-                            alt='Witness witnessing'
-                        />
+                        <Slideshow images={carouselImages} />
                     </motion.div>
                     <div className={styles.calloutListSection}>
                         <h1 className={styles.calloutListHeader} id="calloutSets">Symbol Callouts</h1>

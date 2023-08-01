@@ -83,16 +83,9 @@
     z-index: 10;
 }
 
-.calloutSetImageWrapper {
+.calloutSetSlideshowWrapper {
     position: relative;
     flex-basis: 32%;
-}
-
-.calloutSetImage {
-    width: 100%;
-    height: 100%;
-    border-radius: 10%;
-    object-fit: contain;
 }
 
 .calloutListSection {
@@ -199,7 +192,7 @@
         margin-right: 2rem;
     }
 
-    .calloutSetImageWrapper {
+    .calloutSetSlideshowWrapper {
         display: none;
     }
 }
