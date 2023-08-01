@@ -1,12 +1,27 @@
 import Footer from '@/components/Footer';
+import { Montserrat, Roboto } from 'next/font/google';
 import styles from './RootLayout.module.css';
 import './globals.css';
 
 import { Metadata } from 'next';
 
+const montserrat = Montserrat({
+    subsets: ['latin'],
+    weight: ['500', '800', '900'],
+    display: 'swap',
+    variable: '--font-title',
+})
+
+const roboto = Roboto({
+    subsets: ['latin'],
+    weight: '400',
+    display: 'swap',
+    variable: '--font-primary',
+})
+
 export default function RootLayout({children}: {children: React.ReactNode[]}) {
     return (
-        <html lang='en'>
+        <html lang='en' className={`${montserrat.variable} ${roboto.variable}`}>
             <body className={styles.webpageContainer}>
                 <main>
                     {children}
