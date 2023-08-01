@@ -1,0 +1,17 @@
+.section {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    position: relative;
+}
+
+.bottomBorder {
+    border-bottom: 1px solid gray;
+}
+
+.sectionBackground {
+    object-fit: cover;
+    user-select: none;
+    z-index: 0;
+}

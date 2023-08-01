@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import styles from './Home.module.css'
+import PageSection from '@/components/PageSection'
 
 const calloutSetVariants: Variants = {
     visible: {
@@ -43,15 +44,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     return (
         <div className={styles.homePage}>
-            <section className={styles.sectionOne}>
-                <Image
-                    className={styles.sectionBackground}
-                    src={SpaceBackground}
-                    alt='Space background'
-                    fill={true}
-                    priority={true}
-                    draggable={false}
-                />
+            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder={true}>
                 <Navbar />
                 <div className={styles.banner}>
 
@@ -85,16 +78,9 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         />
                     </motion.div>
                 </div>
-            </section>
+            </PageSection>
             
-            <section ref={calloutSetRef}>
-                <Image
-                    className={styles.sectionBackground}
-                    src={PlanetsBackground}
-                    alt='Planets background'
-                    fill={true}
-                    draggable={false}
-                />
+            <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background' ref={calloutSetRef}>
                 <div className={styles.calloutSplitter}>
                     <motion.div
                         initial={{ x: -100, opacity: 0 }}
@@ -147,7 +133,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                         </div>
                     </div>
                 </div>
-            </section>
+            </PageSection>
         </div>
     )
 }
