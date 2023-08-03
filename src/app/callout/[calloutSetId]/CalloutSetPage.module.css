@@ -173,6 +173,7 @@
 
 .symbolName {
     text-align: center;
+    opacity: 1; /* required on iOS */
     width: 140px;
     height: 30px;
     border-radius: 4px;
