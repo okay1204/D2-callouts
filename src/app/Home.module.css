@@ -272,6 +272,10 @@
     .calloutSetActivityList {
         display: none;
     }
+
+    .calloutSetArrow {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 450px) {
