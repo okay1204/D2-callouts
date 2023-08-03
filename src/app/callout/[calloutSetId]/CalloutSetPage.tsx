@@ -1,14 +1,18 @@
 'use client'
 
 import Loading from "@/app/loading";
+import Navbar from "@/components/Navbar";
+import PageSection from "@/components/PageSection";
+import PlanetsBackground from "@/images/planets-background.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
-import Navbar from "@/components/Navbar";
 
 interface CustomNames {
     [imageId: number]: string
@@ -18,9 +22,11 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     // null means All, undefined means not loaded yet
     const [selectedActivity, setSelectedActivity] = useState<Activity | null | undefined>(undefined)
     const [loadedImages, setLoadedImages] = useState<number[]>([])
+    const [inEditMode, setInEditMode] = useState<boolean>(false)
     const [customNames, setCustomNames] = useState<CustomNames>({})
     const [copyTimeout, setCopyTimeout] = useState<number | null>(null)
     const [scope, animate] = useAnimate()
+    const [restoreDefaultsClicked, setRestoreDefaultsClicked] = useState<boolean>(false)
     const router = useRouter()
 
     const changeActivity = useCallback((activity: Activity | null) => {
@@ -38,18 +44,29 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         router.replace(`${window.location.pathname}?${urlParams.toString()}`)
     }, [router])
 
+    const onRestoreDefaults = () => {
+        setCustomNames({})
+        localStorage.setItem(`${calloutSet?.id}.customNames`, JSON.stringify({}))
+
+        if (!restoreDefaultsClicked) {
+            setRestoreDefaultsClicked(true)
+
+            setTimeout(() => {
+                setRestoreDefaultsClicked(false)
+            }, 500)
+        }
+    }
+
     const handleImageLoad = (imageId: number) => {
         if (!loadedImages.includes(imageId)) {
-            setLoadedImages((prevLoadedImages) => [...prevLoadedImages, imageId]);
+            setLoadedImages(prevLoadedImages => [...prevLoadedImages, imageId]);
         }
     };
 
     const handleNameChange = (imageId: number, name: string) => {
         // If the name is the same as the default, remove it from the custom names
         // Otherwise, add it to the custom names
-        if (!calloutSet) return
-
-        const imageReference = calloutSet.allImages.find(image => image.id == imageId)
+        const imageReference = calloutSet?.allImages.find(image => image.id == imageId)
         if (!imageReference) return
 
         setCustomNames(prevCustomNames => {
@@ -61,7 +78,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 newCustomNames[imageId] = name
             }
 
-            localStorage.setItem(`${calloutSet.id}.customNames`, JSON.stringify(newCustomNames))
+            localStorage.setItem(`${calloutSet?.id}.customNames`, JSON.stringify(newCustomNames))
             return newCustomNames
         })
     };
@@ -129,98 +146,121 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     if (selectedActivity === undefined) return <Loading />
 
     return (
-        <div>
+        <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background'>
             <Navbar />
-            <h1 className={styles.title}>{calloutSet.name}</h1>
-            {
-                // We should only show the activity buttons if there is more than one activity available
-                calloutSet.activities.length > 1 && (
-                    <>
-                        <div className={styles.activityButtonSelect}>
-                            <button
-                                className={`${styles.activitySelectButton} ${selectedActivity == null ? styles.selectedActivity : ''}`}
-                                onClick={() => changeActivity(null)}
-                            >
-                                All
-                            </button>
-                            {calloutSet.activities.map(activity => (
+            <div className={styles.mainContent}>
+                <h1 className={styles.title}>{calloutSet.name}</h1>
+                {
+                    // We should only show the activity buttons if there is more than one activity available
+                    calloutSet.activities.length > 1 && (
+                        <>
+                            <div className={styles.activityButtonList}>
                                 <button
-                                    key={activity.id}
-                                    className={`${styles.activitySelectButton} ${selectedActivity && selectedActivity.id == activity.id ? styles.selectedActivity : ''}`}
-                                    onClick={() => changeActivity(activity)}
+                                    className={`${styles.activitySelectButton} ${selectedActivity == null ? styles.selectedActivity : ''}`}
+                                    onClick={() => changeActivity(null)}
                                 >
-                                    {activity.name}
+                                    All
                                 </button>
-                            ))}
-                        </div>
-                        <select
-                            className={styles.activityMobileSelect}
-                            value={selectedActivity ? selectedActivity.id : 'all'}
-                            onChange={e => changeActivity(calloutSet.activities.find(activity => activity.id == e.target.value) ?? null)}
-                        >
-                            <option value="all">All</option>
-                            {calloutSet.activities.map(activity => (
-                                <option key={activity.id} value={activity.id}>{activity.name}</option>
-                            ))}
-                        </select>
-                    </>
-                )
-            }
-            <button
-                className={styles.shareButton}
-                onClick={() => {
-                    if (copyTimeout != null) return
+                                {calloutSet.activities.map(activity => (
+                                    <button
+                                        key={activity.id}
+                                        className={`${styles.activitySelectButton} ${selectedActivity && selectedActivity.id == activity.id ? styles.selectedActivity : ''}`}
+                                        onClick={() => changeActivity(activity)}
+                                    >
+                                        {activity.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <select
+                                className={styles.activityMobileSelect}
+                                value={selectedActivity ? selectedActivity.id : 'all'}
+                                onChange={e => changeActivity(calloutSet.activities.find(activity => activity.id == e.target.value) ?? null)}
+                            >
+                                <option value="all">All</option>
+                                {calloutSet.activities.map(activity => (
+                                    <option key={activity.id} value={activity.id}>{activity.name}</option>
+                                ))}
+                            </select>
+                        </>
+                    )
+                }
 
-                    const urlParams = new URLSearchParams(window.location.search);
-
-                    // First clear all custom names from the url
-                    for (const imageId of Object.keys(calloutSet.allImages)) {
-                        urlParams.delete(imageId)
-                    }
-
-                    // Then add the custom names
-                    for (const [imageId, name] of Object.entries(customNames)) {
-                        urlParams.set(imageId, name)
-                    }
-                    
-                    // Signify that this is a custom callout set
-                    urlParams.set('isCustom', 'true')
-
-                    navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
-                    .then(() => {
-                        setCopyTimeout(window.setTimeout(() => setCopyTimeout(null), 2000))
-                    })
-                }}
-            >
-                {copyTimeout == null ? 'Share 📥' : 'Copied! 📥'}
-            </button>
-
-            {loadedImages.length < imageList.length && <Loading />}
-            <div className={`${styles.symbolList} ${loadedImages.length < imageList.length ? 'hide' : ''}`} ref={scope}>
-                {imageList.map(imageReference => (
-                    <div key={imageReference.id} className={styles.symbol}>
-                        <div className={styles.symbolImageContainer}>
-                            <Image
-                                fill={true}
-                                priority={true}
-                                onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
-                                sizes="10rem, (max-width: 600px) 7.5rem, (max-width: 570px) 6rem"
-                                className={styles.symbol}
-                                src={imageReference.url}
-                                alt='Callout Set Symbol'
-                            />
-                        </div>
-
-                        <input
-                            type="text"
-                            className={styles.symbolName}
-                            // Display the custom name if it exists, otherwise use the default name
-                            value={customNames[imageReference.id] ?? imageReference.name}
-                            onChange={e => handleNameChange(imageReference.id, e.target.value)}
-                        />
+                {loadedImages.length < imageList.length && <Loading />}
+                <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide' : ''}`}>
+                    <Image 
+                        className={styles.symbolDisplayBackground}
+                        priority={true}
+                        src={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`}
+                        alt='Symbol List Background'
+                        fill={true}
+                    />
+                    <div className={styles.actionButtonList}>
+                        <button className={styles.actionButton} onClick={() => setInEditMode(!inEditMode)}>
+                            <FontAwesomeIcon icon={faPen} />
+                            <span>{inEditMode ? 'Done' : 'Edit'}</span>
+                        </button>
+                        <button className={styles.actionButton} onClick={() => onRestoreDefaults()}>
+                            <span>Restore Defaults</span>
+                        </button>
                     </div>
-                ))}
+                    <div className={styles.symbolList} ref={scope}>
+                        {imageList.map(imageReference => (
+                            <div key={imageReference.id} className={`${styles.symbol} ${inEditMode ? styles.symbolEditMode : ''}`}>
+                                <div className={styles.symbolImageContainer}>
+                                    <Image
+                                        fill={true}
+                                        priority={true}
+                                        onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
+                                        sizes="6rem, (max-width: 600px) 7.5rem, (max-width: 570px) 6rem"
+                                        className={styles.symbolImage}
+                                        src={imageReference.url}
+                                        alt='Callout Set Symbol'
+                                    />
+                                </div>
+
+                                <input
+                                    type="text"
+                                    className={styles.symbolName}
+                                    disabled={!inEditMode}
+                                    // Display the custom name if it exists, otherwise use the default name
+                                    value={customNames[imageReference.id] ?? imageReference.name}
+                                    onChange={e => handleNameChange(imageReference.id, e.target.value)}
+                                    style={{color: restoreDefaultsClicked ? 'white' : 'rgba(235, 235, 235, 0.8)'}}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <button
+                    className={styles.shareButton}
+                    onClick={() => {
+                        if (copyTimeout != null) return
+
+                        const urlParams = new URLSearchParams(window.location.search);
+
+                        // First clear all custom names from the url
+                        for (const imageId of Object.keys(calloutSet.allImages)) {
+                            urlParams.delete(imageId)
+                        }
+
+                        // Then add the custom names
+                        for (const [imageId, name] of Object.entries(customNames)) {
+                            urlParams.set(imageId, name)
+                        }
+                        
+                        // Signify that this is a custom callout set
+                        urlParams.set('isCustom', 'true')
+
+                        navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
+                        .then(() => {
+                            setCopyTimeout(window.setTimeout(() => setCopyTimeout(null), 2000))
+                        })
+                    }}
+                >
+                    {copyTimeout == null ? 'Share 📥' : 'Copied! 📥'}
+                </button>
             </div>
-        </div>
+        </PageSection>
     )
 }

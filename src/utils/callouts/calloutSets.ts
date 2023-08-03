@@ -30,7 +30,7 @@ const getCalloutImages = cache(async (calloutSetId: string): Promise<CalloutImag
 
     const imageUrls = await fs.readdir(path.join(process.cwd(), '/public/images/callouts', calloutSetId))
     for (const fileName of imageUrls) {
-        if (fileName === 'banner') continue
+        if (fileName === 'extra') continue
 
         const imageParts = path.basename(fileName).split('-')
         const imageId = parseInt(imageParts[0])

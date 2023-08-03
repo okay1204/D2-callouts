@@ -14,7 +14,7 @@ import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Variants, motion } from "framer-motion"
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
@@ -110,7 +110,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                 >
                                     <Image 
                                         className={styles.calloutSetBackground}
-                                        src={`/images/callouts/${calloutSet.id}/banner/background.png`}
+                                        src={`/images/callouts/${calloutSet.id}/extra/banner-background.png`}
                                         alt='Callout Set Background'
                                         fill={true}
                                     />

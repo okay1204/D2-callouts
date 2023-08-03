@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.section > * {
+    z-index: 1;
+}
+
 .bottomBorder {
     border-bottom: 1px solid gray;
 }
