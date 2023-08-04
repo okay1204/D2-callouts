@@ -11,7 +11,7 @@ import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 import Symbol from "./Symbol";
 
@@ -136,8 +136,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         // Animate the symbol list if all images are loaded
         if (scope.current && loadedImages.length >= imageList.length) {
             animate([
-                [`.${styles.symbol}`, { opacity: 0 }, { duration: 0 }],
-                [`.${styles.symbol}`, { opacity: 1 }, { duration: 0.3, delay: stagger(0.02) }],
+                [`.${styles.symbolSelector}`, { opacity: 0 }, { duration: 0 }],
+                [`.${styles.symbolSelector}`, { opacity: 1 }, { duration: 0.3, delay: stagger(0.02) }],
             ])
         }
     }, [animate, calloutSet, imageList.length, loadedImages, scope, selectedActivity])
@@ -209,6 +209,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                             <Symbol
                                 key={imageReference.id}
                                 imageReference={imageReference}
+                                selectorClassName={styles.symbolSelector}
                                 inEditMode={inEditMode}
                                 setInEditMode={setInEditMode}
                                 onLoadingComplete={() => { handleImageLoad(imageReference.id) }}

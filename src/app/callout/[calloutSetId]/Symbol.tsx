@@ -7,6 +7,7 @@ import styles from './Symbol.module.css';
 
 interface SymbolProps {
     imageReference: ImageReference
+    selectorClassName: string
     inEditMode: boolean
     setInEditMode: (inEditMode: boolean) => void
     onLoadingComplete: () => void
@@ -15,7 +16,7 @@ interface SymbolProps {
     restoreDefaultsClicked: boolean
 }
 
-export default function Symbol({imageReference, inEditMode, setInEditMode, onLoadingComplete, name, onNameChange, restoreDefaultsClicked}: SymbolProps) {
+export default function Symbol({imageReference, selectorClassName, inEditMode, setInEditMode, onLoadingComplete, name, onNameChange, restoreDefaultsClicked}: SymbolProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [wasClicked, setWasClicked] = useState<boolean>(false);
     const [originalName, setOriginalName] = useState<string | undefined>(undefined);
@@ -35,7 +36,7 @@ export default function Symbol({imageReference, inEditMode, setInEditMode, onLoa
     return (
         <div
             key={imageReference.id}
-            className={`${styles.symbol} ${inEditMode ? styles.symbolEditMode : ''}`}
+            className={`${styles.symbol} ${selectorClassName} ${inEditMode ? styles.symbolEditMode : ''}`}
             onClick={() => {
                 setInEditMode(true);
                 setWasClicked(true);
