@@ -13,7 +13,7 @@ const variants: Variants = {
 }
 
 const transitionTime = 1;
-export default function Slideshow({ images, className = '', interval = 5000 }: { images: StaticImageData[], className?: string, interval?: number }) {
+export default function Slideshow({ images, className = '', interval = 8000 }: { images: StaticImageData[], className?: string, interval?: number }) {
     const [index, setIndex] = useState(0);
     const [nextIndex, setNextIndex] = useState(1);
 
