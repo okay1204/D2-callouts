@@ -20,12 +20,13 @@ export default function Symbol({imageReference, inEditMode, setInEditMode, onLoa
     const [wasClicked, setWasClicked] = useState<boolean>(false);
     const [originalName, setOriginalName] = useState<string | undefined>(undefined);
 
+    // If the component is clicked, focus the input element
     useEffect(() => {
         if (wasClicked) {
             inputRef.current?.focus();
             setWasClicked(false);
         }
-    }, [inEditMode, wasClicked]);
+    }, [wasClicked]);
 
     const clearOriginalName = () => {
         originalName != undefined && setOriginalName(undefined);
