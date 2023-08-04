@@ -46,7 +46,7 @@ export default function Symbol({imageReference, inEditMode, setInEditMode, onLoa
                     fill={true}
                     priority={true}
                     onLoadingComplete={onLoadingComplete}
-                    sizes="6rem, (max-width: 600px) 7.5rem, (max-width: 570px) 6rem"
+                    sizes="6rem, (max-width: 750px) 5rem"
                     className={styles.symbolImage}
                     src={imageReference.url}
                     alt='Callout Set Symbol'
