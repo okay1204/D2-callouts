@@ -11,8 +11,9 @@ import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from './CalloutSetPage.module.css';
+import Symbol from "./Symbol";
 
 interface CustomNames {
     [imageId: number]: string
@@ -205,29 +206,16 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     </div>
                     <div className={styles.symbolList} ref={scope}>
                         {imageList.map(imageReference => (
-                            <div key={imageReference.id} className={`${styles.symbol} ${inEditMode ? styles.symbolEditMode : ''}`}>
-                                <div className={styles.symbolImageContainer}>
-                                    <Image
-                                        fill={true}
-                                        priority={true}
-                                        onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
-                                        sizes="6rem, (max-width: 600px) 7.5rem, (max-width: 570px) 6rem"
-                                        className={styles.symbolImage}
-                                        src={imageReference.url}
-                                        alt='Callout Set Symbol'
-                                    />
-                                </div>
-
-                                <input
-                                    type="text"
-                                    className={styles.symbolName}
-                                    disabled={!inEditMode}
-                                    // Display the custom name if it exists, otherwise use the default name
-                                    value={customNames[imageReference.id] ?? imageReference.name}
-                                    onChange={e => handleNameChange(imageReference.id, e.target.value)}
-                                    style={{color: restoreDefaultsClicked ? 'white' : 'rgba(235, 235, 235, 0.8)'}}
-                                />
-                            </div>
+                            <Symbol
+                                key={imageReference.id}
+                                imageReference={imageReference}
+                                inEditMode={inEditMode}
+                                setInEditMode={setInEditMode}
+                                onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
+                                name={customNames[imageReference.id] ?? imageReference.name}
+                                onNameChange={e => handleNameChange(imageReference.id, e.target.value)}
+                                restoreDefaultsClicked={restoreDefaultsClicked}
+                            />
                         ))}
                     </div>
                 </div>

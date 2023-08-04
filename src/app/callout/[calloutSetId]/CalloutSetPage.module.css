@@ -148,41 +148,6 @@
     align-items: center;
 }
 
-.symbol {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.symbolEditMode {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.symbolImageContainer {
-    position: relative;
-    background-color: transparent;
-    width: 6rem;
-    height: 6rem;
-    margin: 0.5rem 1rem;
-}
-
-.symbolName {
-    text-align: center;
-    opacity: 1; /* required on iOS */
-    width: 140px;
-    height: 30px;
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-size: 1.2rem;
-    font-weight: 700;
-    transition: color 0.3s ease;
-}
-
 @media screen and (max-width: 1500px) {
     .symbolsDisplay {
         width: 80%;
@@ -203,18 +168,4 @@
     .activityMobileSelect {
         display: block;
     }
-}
-
-@media screen and (max-width: 750px) {
-    .symbolImageContainer {
-        width: 5rem;
-        height: 5rem;
-    }
-}
-
-@media screen and (max-width: 570px) {
-    /* .symbolImageContainer {
-        width: 4rem;
-        height: 4rem;
-    } */
 }
