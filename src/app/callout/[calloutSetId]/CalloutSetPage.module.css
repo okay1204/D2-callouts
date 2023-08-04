@@ -102,6 +102,7 @@
     z-index: -1;
     object-fit: cover;
     border-radius: 16px;
+    filter: brightness(0.5)
 }
 
 .actionButtonList {
