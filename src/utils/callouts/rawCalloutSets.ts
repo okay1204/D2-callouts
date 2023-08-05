@@ -48,7 +48,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             {
                 name: 'Ghosts of the Deep',
                 id: 'ghosts-of-the-deep',
-                imageIds: [0, 2, 3, 4, 5, 6, 7],
+                imageIds: [0, 1, 2, 3, 4, 5, 6, 7],
             },
         ],
         id: 'hive-runes',
