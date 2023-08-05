@@ -1,20 +1,27 @@
 .slideshow {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 0; /* Set the height to 0 to allow the aspect ratio to be defined by the padding-bottom */
+    padding-bottom: 100%; /* The aspect ratio of the slideshow is 1:1 because 100% will translate to 1 : 1 */
 }
 
 .slideshowImagesContainer {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
     width: 100%;
     height: 100%;
 }
 
 .imageContainer {
-    position: absolute;
-    opacity: 0;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 1;   
     width: 100%;
     height: 100%;
+    opacity: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,8 +29,7 @@
 
 .image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
+    height: 100%;
     border-radius: 10%;
     object-fit: cover;
 }
