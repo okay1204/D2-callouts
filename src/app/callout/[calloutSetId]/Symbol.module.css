@@ -26,15 +26,21 @@
 }
 
 .symbolName {
+    resize: none;
     text-align: center;
     opacity: 1; /* required on iOS */
     width: 140px;
-    height: 30px;
+    line-height: 30px;
+    /* height: 30px; */
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.3);
     font-size: 1.2rem;
     font-weight: 700;
     transition: color 0.3s ease;
+}
+
+.symbolName::-webkit-scrollbar {
+    display: none;
 }
 
 @media screen and (max-width: 750px) {
