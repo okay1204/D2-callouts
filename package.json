@@ -27,7 +27,6 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@simbathesailor/use-what-changed": "^2.0.0",
     "eslint-config-next": "^13.4.4"
   }
 }
