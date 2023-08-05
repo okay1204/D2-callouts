@@ -4,17 +4,18 @@ import React, { forwardRef, ForwardedRef } from 'react';
 
 interface PageSectionProps {
     children?: React.ReactNode | React.ReactNode[];
-    backgroundSrc: StaticImageData;
+    backgroundSrc: StaticImageData | string;
     backgroundAlt?: string;
     bottomBorder?: boolean;
+    imageClassName?: string;
 }
 
 const PageSection = forwardRef<HTMLDivElement, PageSectionProps>(
-    ({ children, backgroundSrc, backgroundAlt = 'Background', bottomBorder = false }, ref: ForwardedRef<HTMLDivElement>) => {
+    ({ children, backgroundSrc, backgroundAlt = 'Background', bottomBorder = false, imageClassName = '' }, ref: ForwardedRef<HTMLDivElement>) => {
         return (
             <section className={`${styles.section} ${bottomBorder ? styles.bottomBorder : ''}`} ref={ref}>
                 <Image
-                    className={styles.sectionBackground}
+                    className={`${styles.sectionBackground}  ${imageClassName}`}
                     src={backgroundSrc}
                     alt={backgroundAlt}
                     fill={true}

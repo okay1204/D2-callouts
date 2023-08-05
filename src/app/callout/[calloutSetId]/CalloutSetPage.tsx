@@ -143,7 +143,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     if (selectedActivity === undefined) return <Loading />
 
     return (
-        <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background'>
+        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage}>
             <Navbar />
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
@@ -184,13 +184,13 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
 
                 {loadedImages.length < imageList.length && <Loading />}
                 <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide' : ''}`}>
-                    <Image 
+                    {/* <Image 
                         className={styles.symbolDisplayBackground}
                         priority={true}
                         src={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`}
                         alt='Symbol List Background'
                         fill={true}
-                    />
+                    /> */}
                     <div className={styles.actionButtonList}>
                         <button className={styles.actionButton} onClick={() => setInEditMode(!inEditMode)}>
                             <FontAwesomeIcon icon={faPen} />
