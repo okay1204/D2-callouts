@@ -120,28 +120,24 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 }
             }
         }
-    }, [calloutSet, changeActivity])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     let imageList: ImageReference[] = []
-    if (calloutSet === undefined) {
-        imageList = []
-    }
-    else {
+    if (calloutSet != undefined) {
         imageList = selectedActivity ? selectedActivity.images : calloutSet.allImages
     }
 
     useEffect(() => {
-        if (typeof selectedActivity == 'undefined' || !calloutSet) return
-
         // Animate the symbol list if all images are loaded
-        if (scope.current && loadedImages.length >= imageList.length) {
+        if (loadedImages.length >= imageList.length) {
             animate([
                 [`.${styles.symbolSelector}`, { opacity: 0 }, { duration: 0 }],
                 [`.${styles.symbolSelector}`, { opacity: 1 }, { duration: 0.3, delay: stagger(0.02) }],
             ])
         }
-    }, [animate, calloutSet, imageList.length, loadedImages, scope, selectedActivity])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loadedImages, selectedActivity])
 
     if (!calloutSet) return <DefaultErrorPage statusCode={404} />
     if (selectedActivity === undefined) return <Loading />
