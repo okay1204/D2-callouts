@@ -1,6 +1,6 @@
 # D2 Callouts
 
-D2 Callouts is the ultimate Destiny 2 website for creating, customizing, and sharing symbol callouts with your teammates. Designed for those who want to enhance their communication and gameplay in Destiny 2, our website allows for easy callout editing creation to keep everyone on the same page.
+D2 Callouts is the ultimate Destiny 2 website for creating, customizing, and sharing symbol callouts with your teammates. Designed for those who want to enhance their communication and gameplay in Destiny 2, our website allows for easy callout editing and creation to keep everyone on the same page.
 
 **Features**:
 - Create customized symbol callouts
