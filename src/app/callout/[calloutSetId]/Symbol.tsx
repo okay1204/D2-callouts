@@ -57,11 +57,11 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
         adjustRows();
     }, [name]);
 
-    // Also adjust rows a few milliseconds after the component is rendered to account for the initial text
+    // Also adjust rows a second after the component is rendered to account for the initial text
     useEffect(() => {
         setTimeout(() => {
             adjustRows();
-        }, 100);
+        }, 1000);
     }, []);
 
     return (
