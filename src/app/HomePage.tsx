@@ -82,6 +82,13 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
             <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background' ref={calloutSetRef}>
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>
+                        <motion.div
+                            initial={{ x: 100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            className={styles.calloutSetSlideshowWrapper}
+                        >
+                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk]} />
+                        </motion.div>
                         <div className={styles.calloutListSection}>
                             <motion.h1
                                 className={styles.calloutListHeader}
@@ -142,13 +149,6 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                 ))}
                             </div>
                         </div>
-                        <motion.div
-                            initial={{ x: 100, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            className={styles.calloutSetSlideshowWrapper}
-                        >
-                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk]} />
-                        </motion.div>
                     </div>
                 </div>
             </PageSection>
