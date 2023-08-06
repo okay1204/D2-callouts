@@ -151,7 +151,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 @media screen and (max-width: 1500px) {
