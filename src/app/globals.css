@@ -94,8 +94,12 @@ input:focus {
     outline: none;
 }
 
-.hide {
+.hide-display {
     display: none !important;
+}
+
+.hide-visibility {
+    visibility: hidden !important;
 }
 
 @media (max-width: 1400px) {

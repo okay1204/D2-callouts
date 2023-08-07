@@ -57,13 +57,6 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
         adjustRows();
     }, [name]);
 
-    // Also adjust rows a second after the component is rendered to account for the initial text
-    useEffect(() => {
-        setTimeout(() => {
-            adjustRows();
-        }, 1000);
-    }, []);
-
     return (
         <div
             key={imageReference.id}

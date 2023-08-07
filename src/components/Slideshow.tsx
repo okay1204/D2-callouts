@@ -29,7 +29,7 @@ export default function Slideshow({ images, className = '', interval = 8000 }: {
     return (
         <div className={`${styles.slideshow} ${className}`}>
             {/* This is used to preload the images on the slideshow before they are shown, and will never be actually displayed */}
-            <div className="hide">
+            <div className="hide-display">
                 {images.map((image, i) => (
                     <Image
                         key={i}

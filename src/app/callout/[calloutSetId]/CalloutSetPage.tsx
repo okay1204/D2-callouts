@@ -183,14 +183,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 }
 
                 {loadedImages.length < imageList.length && <Loading />}
-                <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide' : ''}`}>
-                    {/* <Image 
-                        className={styles.symbolDisplayBackground}
-                        priority={true}
-                        src={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`}
-                        alt='Symbol List Background'
-                        fill={true}
-                    /> */}
+                <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide-visibility' : ''}`}>
                     <div className={styles.actionButtonList}>
                         <button className={styles.actionButton} onClick={() => setInEditMode(!inEditMode)}>
                             <FontAwesomeIcon icon={faPen} />
