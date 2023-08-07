@@ -60,7 +60,7 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
     return (
         <div
             key={imageReference.id}
-            className={`${styles.symbol} ${selectorClassName} ${inEditMode ? styles.symbolEditMode : ''}`}
+            className={`${styles.symbol} ${selectorClassName} ${inEditMode ? styles.editMode : ''}`}
             onClick={() => {
                 setInEditMode(true);
                 setWasClicked(true);
@@ -80,7 +80,7 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
             </div>
 
             <textarea
-                className={styles.symbolName}
+                className={`${styles.symbolName} ${inEditMode ? styles.editMode : ''}`}
                 disabled={!inEditMode}
                 ref={inputRef}
                 rows={rows}

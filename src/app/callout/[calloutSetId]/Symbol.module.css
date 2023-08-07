@@ -9,12 +9,12 @@
     transition: background-color 0.3s ease;
 }
 
-.symbol:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+.symbol.editMode {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.symbolEditMode {
-    background-color: rgba(0, 0, 0, 0.3);
+.symbol:hover {
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .symbolImageContainer {
@@ -36,7 +36,10 @@
     font-size: 1.2rem;
     font-weight: 700;
     transition: color 0.3s ease;
-    border: 1px solid rgba(118, 118, 118, 0.3);
+}
+
+.symbolName.editMode {
+    border: 1px solid rgb(123, 123, 123);
 }
 
 @media screen and (max-width: 750px) {
