@@ -4,6 +4,15 @@
     width: 100vw;
     flex-direction: column;
     position: relative;
+    scroll-padding-top: 0;
+}
+
+.subtractNavHeight {
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+.navHeight {
+    height: var(--navbar-height);
 }
 
 .section > * {

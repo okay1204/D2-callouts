@@ -1,15 +1,12 @@
 'use client'
 
 import Loading from "@/app/loading";
-import Navbar from "@/components/Navbar";
 import PageSection from "@/components/PageSection";
-import PlanetsBackground from "@/images/planets-background.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
@@ -143,8 +140,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     if (selectedActivity === undefined) return <Loading />
 
     return (
-        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage}>
-            <Navbar />
+        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight={true}>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {

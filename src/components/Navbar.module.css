@@ -1,9 +1,11 @@
 .nav {
+    width: 100%;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem;
-    padding-top: 1rem;
+    height: var(--navbar-height);
+    padding: 0 32px;
     background-color: transparent;
     z-index: 100;
 }
@@ -30,7 +32,7 @@
 
 @media (max-width: 768px) {
     .nav {
-        padding: 1rem 0;
+        padding: 0;
     }
 
     .logoIcon {

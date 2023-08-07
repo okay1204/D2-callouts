@@ -1,6 +1,5 @@
 'use client'
 
-import Navbar from '@/components/Navbar'
 import PageSection from '@/components/PageSection'
 import Slideshow from '@/components/Slideshow'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
@@ -43,8 +42,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     return (
         <div className={styles.homePage}>
-            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder={true}>
-                <Navbar />
+            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder={true} includeNavHeight={true}>
                 <div className={styles.banner}>
 
                     <motion.div

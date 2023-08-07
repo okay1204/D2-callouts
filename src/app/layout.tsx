@@ -5,6 +5,7 @@ import './globals.css';
 
 
 import { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -23,11 +24,14 @@ const roboto = Roboto({
 export default function RootLayout({children}: {children: React.ReactNode[]}) {
     return (
         <html lang='en' className={`${montserrat.variable} ${roboto.variable}`}>
-            <body className={styles.webpageContainer}>
-                <main>
-                    {children}
-                </main>
-                <Footer />
+            <body>
+                <Navbar />
+                <div className={styles.webpageContainer}>
+                    <main>
+                        {children}
+                    </main>
+                    <Footer />
+                </div>
             </body>
         </html>
     )
