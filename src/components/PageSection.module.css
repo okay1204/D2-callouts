@@ -26,5 +26,5 @@
 .sectionBackground {
     object-fit: cover;
     user-select: none;
-    z-index: 0;
+    z-index: -10;
 }
