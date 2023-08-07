@@ -3,7 +3,7 @@
 import Loading from "@/app/loading";
 import PageSection from "@/components/PageSection";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
@@ -186,6 +186,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                             <span>{inEditMode ? 'Done' : 'Edit'}</span>
                         </button>
                         <button className={styles.actionButton} onClick={() => onRestoreDefaults()}>
+                            <FontAwesomeIcon icon={faRotateRight} />
                             <span>Restore Defaults</span>
                         </button>
                     </div>
