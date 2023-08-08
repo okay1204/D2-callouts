@@ -69,8 +69,8 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
         >
             <div className={styles.symbolImageContainer}>
                 <Image
-                    fill={true}
-                    priority={true}
+                    fill
+                    priority
                     onLoadingComplete={onLoadingComplete}
                     sizes="6rem, (max-width: 750px) 5rem"
                     className={styles.symbolImage}

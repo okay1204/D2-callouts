@@ -42,7 +42,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     return (
         <div className={styles.homePage}>
-            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder={true} includeNavHeight={true}>
+            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder includeNavHeight>
                 <div className={styles.banner}>
 
                     <motion.div
@@ -111,11 +111,11 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                             className={styles.calloutSetBackground}
                                             src={`/images/callouts/${calloutSet.id}/extra/banner-background.png`}
                                             alt='Callout Set Background'
-                                            fill={true}
+                                            fill
                                         />
                                         <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                             <Image
-                                                fill={true}
+                                                fill
                                                 sizes="5.25rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
                                                 className={styles.calloutSetSymbol}
                                                 src={calloutSet.bannerImage.url}

@@ -140,7 +140,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     if (selectedActivity === undefined) return <Loading />
 
     return (
-        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight={true}>
+        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {

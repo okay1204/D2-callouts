@@ -34,7 +34,7 @@ export default function Slideshow({ images, className = '', interval = 8000 }: {
                     <Image
                         key={i}
                         src={image}
-                        priority={true}
+                        priority
                         alt="Slideshow Image"
                     />
                 ))}

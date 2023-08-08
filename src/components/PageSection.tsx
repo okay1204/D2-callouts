@@ -19,8 +19,8 @@ const PageSection = forwardRef<HTMLDivElement, PageSectionProps>(
                     className={`${styles.sectionBackground}  ${imageClassName}`}
                     src={backgroundSrc}
                     alt={backgroundAlt}
-                    fill={true}
-                    priority={true}
+                    fill
+                    priority
                     draggable={false}
                 />
 
