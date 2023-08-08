@@ -4,8 +4,8 @@ import styles from './RootLayout.module.css';
 import './globals.css';
 
 
-import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
+import { Metadata } from 'next';
 import Script from 'next/script';
 
 const montserrat = Montserrat({
@@ -27,14 +27,14 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
         <html lang='en' className={`${montserrat.variable} ${roboto.variable}`}>
             <body>
                 {/* <!-- Google tag (gtag.js) --> */}
-                <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`} />
+                <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} />
                 <Script id="google-analytics">
                     {`
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
             
-                    gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');
+                    gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
                     `}
                 </Script>
 
