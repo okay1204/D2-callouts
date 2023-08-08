@@ -7,6 +7,13 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 import Script from 'next/script';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+
+declare global {
+    interface Window {
+        gtag: (...args: any[]) => void;
+    }
+}
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -25,7 +32,8 @@ const roboto = Roboto({
 export default function RootLayout({children}: {children: React.ReactNode[]}) {
     return (
         <html lang='en' className={`${montserrat.variable} ${roboto.variable}`}>
-            <body>
+            <GoogleAnalytics />
+            <body> 
                 {/* <!-- Google tag (gtag.js) --> */}
                 <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`} />
                 <Script id="google-analytics">
