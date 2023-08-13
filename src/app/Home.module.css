@@ -72,15 +72,15 @@
 
 .calloutSetSlideshowWrapper {
     position: relative;
-    flex-basis: 30vw;
+    flex-basis: 25vw;
 }
 
 .calloutListSection {
-    flex-basis: 50%;
+    flex-basis: 45%;
 }
 
 .calloutListHeader {
-    font-size: 4rem;
+    font-size: 3.125rem;
     text-align: left;
     padding: 1rem;
 }
@@ -100,7 +100,7 @@
     border: 1px white solid;
     border-radius: 8px;
     width: 100%;
-    height: 150px;
+    height: 140px;
     padding: 1rem;
     cursor: pointer;
     transition: border 0.2s ease-in-out;
@@ -127,7 +127,7 @@
 }
 
 .calloutSetText h2 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
 }
 
 .calloutSetActivityList {
@@ -137,7 +137,7 @@
 }
 
 .calloutSetActivityLink {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #C0C8E3;
     list-style: inside;
     transition: all 0.2s ease-in-out;
@@ -187,7 +187,7 @@
     }
 
     .calloutSetSlideshowWrapper {
-        flex-basis: 35vw;
+        flex-basis: 32vw;
     }
 }
 
