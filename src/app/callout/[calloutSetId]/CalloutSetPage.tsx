@@ -178,6 +178,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     )
                 }
 
+                {/* <hr className={styles.divider} /> */}
+
                 {loadedImages.length < imageList.length && <Loading />}
                 <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide-visibility' : ''}`}>
                     <div className={styles.actionButtonList}>

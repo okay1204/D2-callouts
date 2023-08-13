@@ -83,6 +83,7 @@
     font-weight: 700;
     display: block;
     margin: 1rem auto;
+    margin-bottom: 3rem;
     padding: 0.8rem 1rem;
     border-radius: 5px;
     color: var(--text-primary);
@@ -98,7 +99,7 @@
 .symbolsDisplay {
     position: relative;
     width: 55%;
-    padding: 2rem 0.5rem;
+    padding: 0 0.5rem;
     margin: 1rem auto;
 }
 
@@ -118,7 +119,7 @@
 
 .actionButton {
     margin: 0 0.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding: 0.7rem 0.9rem;
     border-radius: 27px;
     background-color: rgba(0, 0, 0, 0.19);
