@@ -52,6 +52,11 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
         }
     }
 
+    const handleNameSelect = () => {
+        setInEditMode(true);
+        setOriginalName(name);
+    }
+
     // Adjust rows whenever the name changes
     useEffect(() => {
         adjustRows();
@@ -62,9 +67,8 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
             key={imageReference.id}
             className={`${styles.symbol} ${selectorClassName} ${inEditMode ? styles.editMode : ''}`}
             onClick={() => {
-                setInEditMode(true);
+                handleNameSelect();
                 setWasClicked(true);
-                setOriginalName(name);
             }}
         >
             <div className={styles.symbolImageContainer}>
@@ -81,12 +85,12 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
 
             <textarea
                 className={`${styles.symbolName} ${inEditMode ? styles.editMode : ''}`}
-                disabled={!inEditMode}
                 ref={inputRef}
                 rows={rows}
                 // If originalName is defined, that means the text was temporarily cleared to allow the user to edit the name. If they click out without changing the name, we want to restore the original name.
                 value={originalName == undefined ? name : ''}
                 onBlur={() => clearOriginalName()}
+                onFocus={() => handleNameSelect()}
                 onChange={e => {
                     onNameChange(e);
                     clearOriginalName();

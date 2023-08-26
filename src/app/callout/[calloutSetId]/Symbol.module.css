@@ -27,10 +27,12 @@
 
 .symbolName {
     text-align: center;
+    cursor: default;
     resize: none;
     opacity: 1; /* required on iOS */
     width: 140px;
     line-height: 28px;
+    border: 1px solid transparent;
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 1.2rem;
@@ -40,6 +42,7 @@
 
 .symbolName.editMode {
     border: 1px solid rgb(123, 123, 123);
+    cursor: text;
 }
 
 @media screen and (max-width: 750px) {
