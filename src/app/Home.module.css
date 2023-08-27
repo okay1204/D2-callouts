@@ -233,6 +233,10 @@
     .calloutSetSlideshowWrapper {
         display: none;
     }
+
+    .calloutSetArrow {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 850px) {
@@ -279,10 +283,6 @@
     }
 
     .calloutSetActivityList {
-        display: none;
-    }
-
-    .calloutSetArrow {
         display: none;
     }
 }
