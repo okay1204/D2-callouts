@@ -23,7 +23,7 @@ export default function Navbar() {
                 />
             </Link>
             
-            <KofiButton title='Buy me a coffee' color='var(--primary-darker)' kofiID='zackariaghanbari'/>
+            <KofiButton title='Buy us a coffee' color='var(--primary-darker)' kofiID='zackariaghanbari'/>
         </nav>
     )
 }
