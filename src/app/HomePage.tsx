@@ -5,6 +5,7 @@ import Slideshow from '@/components/Slideshow'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
 import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
 import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
+import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
 import PlanetsBackground from '@/images/planets-background.png'
 import RaidEmblem from '@/images/raid-emblem.png'
@@ -85,7 +86,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                             whileInView={{ x: 0, opacity: 1 }}
                             className={styles.calloutSetSlideshowWrapper}
                         >
-                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk]} />
+                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, MenacingCrota]} />
                         </motion.div>
                         <div className={styles.calloutListSection}>
                             <motion.h1
