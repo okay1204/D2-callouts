@@ -7,9 +7,15 @@
     height: 10rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     width: 80%;
     margin: 0 auto;
+}
+
+.left, .right {
+    display: flex;
+    align-items: center;
 }
 
 .imageContainer {
@@ -36,4 +42,42 @@
 
 .footerText a:hover {
     text-decoration: underline;
+}
+
+.discordButton {
+    font-size: 35px;
+    aspect-ratio: 1 / 1;
+    padding: 5px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.discordButton:hover {
+    /* change color to discord blurple */
+    color: #5865F2;
+    background-color: var(--background);
+    transform: scale(1.04);
+}
+
+.discordButtonIcon * {
+    transition: all 0.2s ease-in-out;
+}
+
+.discordButton:hover .discordButtonIcon * {
+    color: #5865F2;
+}
+
+@media screen and (max-width: 650px) {
+    .footerContent {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .footerText {
+        font-size: 0.8em;
+    }
 }
