@@ -398,7 +398,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     </button>
 
                     <button onClick={() => downloadImage()}>
-                        {isGeneratingImage ? 'Generating...' : 'Download Image'}
+                        {isGeneratingImage ? 'Generating...' : 'Download'}
                         <FontAwesomeIcon icon={faDownload} className={styles.exportButtonIcon} />
                     </button>
                 </div>
