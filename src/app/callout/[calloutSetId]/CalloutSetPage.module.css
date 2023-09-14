@@ -104,6 +104,14 @@
     background-color: #1A3FCC;
 }
 
+.exportButtonIcon {
+    margin-left: 7px;
+}
+
+.exportButtonIcon * {
+    color: white;
+}
+
 .symbolsDisplay {
     position: relative;
     width: 55%;

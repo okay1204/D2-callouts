@@ -3,7 +3,7 @@
 import Loading from "@/app/loading";
 import PageSection from "@/components/PageSection";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
-import { faPen, faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faRotateRight, faShare, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
@@ -393,11 +393,13 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
 
                 <div className={styles.exportButtonList}>
                     <button onClick={() => copyShareLink()}>
-                        {copyTimeout == null ? 'Share 📥' : 'Copied! 📥'}
+                        {copyTimeout == null ? 'Share' : 'Copied!'}
+                        <FontAwesomeIcon icon={faShare} className={styles.exportButtonIcon} />
                     </button>
 
                     <button onClick={() => downloadImage()}>
-                        {isGeneratingImage ? 'Generating... 🖼️' : 'Download Image 🖼️'}
+                        {isGeneratingImage ? 'Generating...' : 'Download Image'}
+                        <FontAwesomeIcon icon={faDownload} className={styles.exportButtonIcon} />
                     </button>
                 </div>
             </div>
