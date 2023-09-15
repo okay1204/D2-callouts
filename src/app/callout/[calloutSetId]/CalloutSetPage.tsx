@@ -3,7 +3,7 @@
 import Loading from "@/app/loading";
 import PageSection from "@/components/PageSection";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
-import { faPen, faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faRotateRight, faShare, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
@@ -11,9 +11,26 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 import Symbol from "./Symbol";
+import FullLogo from "@/images/full-logo.png";
 
 interface CustomNames {
     [imageId: number]: string
+}
+
+// Function to draw a rounded rectangle
+const roundRect = (ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) => {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.arcTo(x + width, y, x + width, y + radius, radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius);
+    ctx.lineTo(x + radius, y + height);
+    ctx.arcTo(x, y + height, x, y + height - radius, radius);
+    ctx.lineTo(x, y + radius);
+    ctx.arcTo(x, y, x + radius, y, radius);
+    ctx.closePath();
+    ctx.fill();
 }
 
 export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet | undefined }) {
@@ -23,6 +40,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const [inEditMode, setInEditMode] = useState<boolean>(false)
     const [customNames, setCustomNames] = useState<CustomNames>({})
     const [copyTimeout, setCopyTimeout] = useState<number | null>(null)
+    const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false)
     const [scope, animate] = useAnimate()
     const [restoreDefaultsClicked, setRestoreDefaultsClicked] = useState<boolean>(false)
     const router = useRouter()
@@ -120,6 +138,168 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const downloadImage = () => {
+        if (isGeneratingImage) return
+        setIsGeneratingImage(true)
+
+        // Define sizes for canvas components
+        const canvasWidth = 1000;
+        const logoHeight = 70;
+        const logoMargin = 16;
+        const symbolsPerRow = 6;
+        const symbolCardWidth = 140;
+        const symbolCardHeight = 175;
+        const symbolCardGap = 8;
+        const symbolImageSize = 96;
+
+        // Calculate canvas height based on number of symbols
+        // Symbols are arranged like a flexbox row with wrap
+        const canvasHeight = Math.ceil(imageList.length / symbolsPerRow) * (symbolCardHeight + symbolCardGap) + symbolCardGap + logoHeight + (logoMargin * 2);
+        const canvasMargin = Math.ceil((canvasWidth - (symbolsPerRow * (symbolCardWidth + symbolCardGap)) + symbolCardGap) / 2);
+
+        // Create canvas element in the html document
+        const canvas = document.createElement('canvas');
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        // Get 2d drawing context
+        const ctx = canvas.getContext('2d')!;
+
+        // Draw background image (same as the one used for the PageSection)
+        const background = new Image();
+        background.src = backgroundImageSrc;
+
+        const RobotoBold = new FontFace('Roboto-Bold', 'url(/fonts/Roboto-Bold.ttf)')
+        
+        RobotoBold.load()
+        .then(() => (
+            new Promise<void>(resolve => {
+                document.fonts.add(RobotoBold);
+
+                background.onload = () => {
+                    // Calculate scaling factors to cover the canvas while maintaining aspect ratio
+                    const scaleX = canvasWidth / background.width;
+                    const scaleY = canvasHeight / background.height;
+                    const scale = Math.max(scaleX, scaleY);
+    
+                    // Calculate the new width and height of the image
+                    const newWidth = background.width * scale;
+                    const newHeight = background.height * scale;
+    
+                    // Calculate the position to center the image on the canvas
+                    const x = (canvasWidth - newWidth) / 2;
+                    const y = (canvasHeight - newHeight) / 2;
+    
+                    // Draw the background image with the calculated parameters
+                    ctx.filter = 'brightness(0.4) blur(10px)';
+                    ctx.drawImage(background, x, y, newWidth, newHeight);
+    
+                    // Reset filter
+                    ctx.filter = 'none';
+    
+                    resolve();
+                };
+            })
+        ))
+        .then(() => {
+            // List of promises for loading images
+            const imagePromises: Promise<void>[] = [];
+
+            // Load the logo image
+            const logo = new Image();
+            logo.src = FullLogo.src;
+            imagePromises.push(new Promise<void>(resolve => {
+                logo.onload = () => {
+                    // Calculate the scaled width to maintain aspect ratio
+                    const scaledWidth = (logoHeight / logo.naturalHeight) * logo.naturalWidth;
+
+                    // Draw logo horizontally centered with a margin at the top
+                    ctx.drawImage(
+                        logo,
+                        canvasWidth / 2 - scaledWidth / 2,
+                        logoMargin,
+                        scaledWidth,
+                        logoHeight
+                    );
+                    resolve();
+                }
+            }));
+            
+            // Calculate values for drawing symbols in the last row
+            const symbolsInLastRow = imageList.length % symbolsPerRow;
+            const lastRowOffset = (symbolsPerRow - symbolsInLastRow) * (symbolCardWidth + symbolCardGap) / 2
+
+            // Draw symbols with rounded backgrounds
+            for (let i = 0; i < imageList.length; i++) {
+                const imageReference = imageList[i];
+
+                // If the symbol is in the last row, we need to adjust the x position to center it
+                const isLastRow = i >= imageList.length - symbolsInLastRow;
+            
+                const x = (i % symbolsPerRow) * (symbolCardWidth + symbolCardGap) + symbolCardGap + canvasMargin + (isLastRow ? lastRowOffset : 0);
+                const y = Math.floor(i / symbolsPerRow) * (symbolCardHeight + symbolCardGap) + symbolCardGap + logoHeight + (logoMargin * 2);
+
+                // Draw transparent gray background for symbol with rounded borders
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                roundRect(ctx, x, y, symbolCardWidth, symbolCardHeight, 16);
+
+                // Draw symbol image
+                const image = new Image();
+                image.src = imageReference.url;
+                imagePromises.push(new Promise<void>(resolve => {
+                    image.onload = () => {
+                        ctx.drawImage(image, x + (symbolCardWidth - symbolImageSize) / 2, y + (symbolCardHeight - symbolImageSize) / 4, symbolImageSize, symbolImageSize);
+                        resolve();
+                    }
+                }));
+
+                // Draw symbol name
+                ctx.fillStyle = 'white';
+                ctx.font = '20px Roboto-Bold';
+                ctx.textAlign = 'center';
+                ctx.fillText(customNames[imageReference.id] ?? imageReference.name, x + symbolCardWidth / 2, y + symbolCardHeight - 24, symbolCardWidth - 16);
+            }
+
+            // Convert canvas to Blob and trigger download after all images are loaded
+            Promise.all(imagePromises)
+            .then(() => {
+                canvas.toBlob(blob => {
+                    // Trigger download
+                    const a = document.createElement('a');
+                    a.download = `${calloutSet?.name}.png`;
+                    a.href = URL.createObjectURL(blob!);
+                    a.click();
+                    setIsGeneratingImage(false);
+                });
+            })
+        });
+    }
+
+    const copyShareLink = () => {
+        if (copyTimeout != null) return
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // First clear all custom names from the url
+        for (const imageId of Object.keys(calloutSet!.allImages)) {
+            urlParams.delete(imageId)
+        }
+
+        // Then add the custom names
+        for (const [imageId, name] of Object.entries(customNames)) {
+            urlParams.set(imageId, name)
+        }
+        
+        // Signify that this is a custom callout set
+        urlParams.set('isCustom', 'true')
+
+        navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
+        .then(() => {
+            setCopyTimeout(window.setTimeout(() => setCopyTimeout(null), 2000))
+        })
+    }
+
+
     let imageList: ImageReference[] = []
     if (calloutSet != undefined) {
         imageList = selectedActivity ? selectedActivity.images : calloutSet.allImages
@@ -139,8 +319,10 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     if (!calloutSet) return <DefaultErrorPage statusCode={404} />
     if (selectedActivity === undefined) return <Loading />
 
+    const backgroundImageSrc = `/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`
+
     return (
-        <PageSection backgroundSrc={`/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight>
+        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {
@@ -209,34 +391,17 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     </div>
                 </div>
 
-                <button
-                    className={styles.shareButton}
-                    onClick={() => {
-                        if (copyTimeout != null) return
+                <div className={styles.exportButtonList}>
+                    <button onClick={() => copyShareLink()}>
+                        {copyTimeout == null ? 'Share' : 'Copied!'}
+                        <FontAwesomeIcon icon={faShare} className={styles.exportButtonIcon} />
+                    </button>
 
-                        const urlParams = new URLSearchParams(window.location.search);
-
-                        // First clear all custom names from the url
-                        for (const imageId of Object.keys(calloutSet.allImages)) {
-                            urlParams.delete(imageId)
-                        }
-
-                        // Then add the custom names
-                        for (const [imageId, name] of Object.entries(customNames)) {
-                            urlParams.set(imageId, name)
-                        }
-                        
-                        // Signify that this is a custom callout set
-                        urlParams.set('isCustom', 'true')
-
-                        navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}?${urlParams.toString()}`)
-                        .then(() => {
-                            setCopyTimeout(window.setTimeout(() => setCopyTimeout(null), 2000))
-                        })
-                    }}
-                >
-                    {copyTimeout == null ? 'Share 📥' : 'Copied! 📥'}
-                </button>
+                    <button onClick={() => downloadImage()}>
+                        {isGeneratingImage ? 'Generating...' : 'Download'}
+                        <FontAwesomeIcon icon={faDownload} className={styles.exportButtonIcon} />
+                    </button>
+                </div>
             </div>
         </PageSection>
     )
