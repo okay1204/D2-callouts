@@ -165,6 +165,10 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         // Get 2d drawing context
         const ctx = canvas.getContext('2d')!;
 
+        // Draw background image (same as the one used for the PageSection)
+        const background = new Image();
+        background.src = backgroundImageSrc;
+
         const RobotoBold = new FontFace('Roboto-Bold', 'url(/fonts/Roboto-Bold.ttf)')
         
         RobotoBold.load()
@@ -172,24 +176,20 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             new Promise<void>(resolve => {
                 document.fonts.add(RobotoBold);
 
-                // Draw background image (same as the one used for the PageSection)
-                const background = new Image();
-                background.src = backgroundImageSrc;
-
-                // Calculate scaling factors to cover the canvas while maintaining aspect ratio
-                const scaleX = canvasWidth / background.width;
-                const scaleY = canvasHeight / background.height;
-                const scale = Math.max(scaleX, scaleY);
-
-                // Calculate the new width and height of the image
-                const newWidth = background.width * scale;
-                const newHeight = background.height * scale;
-
-                // Calculate the position to center the image on the canvas
-                const x = (canvasWidth - newWidth) / 2;
-                const y = (canvasHeight - newHeight) / 2;
-
-                background.onload = () => {    
+                background.onload = () => {
+                    // Calculate scaling factors to cover the canvas while maintaining aspect ratio
+                    const scaleX = canvasWidth / background.width;
+                    const scaleY = canvasHeight / background.height;
+                    const scale = Math.max(scaleX, scaleY);
+    
+                    // Calculate the new width and height of the image
+                    const newWidth = background.width * scale;
+                    const newHeight = background.height * scale;
+    
+                    // Calculate the position to center the image on the canvas
+                    const x = (canvasWidth - newWidth) / 2;
+                    const y = (canvasHeight - newHeight) / 2;
+    
                     // Draw the background image with the calculated parameters
                     ctx.filter = 'brightness(0.4) blur(10px)';
                     ctx.drawImage(background, x, y, newWidth, newHeight);
@@ -208,12 +208,10 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
             // Load the logo image
             const logo = new Image();
             logo.src = FullLogo.src;
-
-            // Calculate the scaled width to maintain aspect ratio
-            const scaledWidth = (logoHeight / logo.naturalHeight) * logo.naturalWidth;
-
             imagePromises.push(new Promise<void>(resolve => {
                 logo.onload = () => {
+                    // Calculate the scaled width to maintain aspect ratio
+                    const scaledWidth = (logoHeight / logo.naturalHeight) * logo.naturalWidth;
 
                     // Draw logo horizontally centered with a margin at the top
                     ctx.drawImage(
