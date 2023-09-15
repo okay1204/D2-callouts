@@ -394,12 +394,12 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 <div className={styles.exportButtonList}>
                     <button onClick={() => copyShareLink()}>
                         {copyTimeout == null ? 'Share' : 'Copied!'}
-                        <FontAwesomeIcon icon={faShare} className={styles.exportButtonIcon} />
+                        {copyTimeout == null && <FontAwesomeIcon icon={faShare} className={styles.exportButtonIcon} />}
                     </button>
 
                     <button onClick={() => downloadImage()}>
                         {isGeneratingImage ? 'Generating...' : 'Download'}
-                        <FontAwesomeIcon icon={faDownload} className={styles.exportButtonIcon} />
+                        {!isGeneratingImage && <FontAwesomeIcon icon={faDownload} className={styles.exportButtonIcon} />}
                     </button>
                 </div>
             </div>
