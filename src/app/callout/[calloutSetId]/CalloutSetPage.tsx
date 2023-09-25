@@ -165,16 +165,16 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         // Get 2d drawing context
         const ctx = canvas.getContext('2d')!;
 
-        // Draw background image (same as the one used for the PageSection)
-        const background = new Image();
-        background.src = backgroundImageSrc;
-
         const RobotoBold = new FontFace('Roboto-Bold', 'url(/fonts/Roboto-Bold.ttf)')
         
         RobotoBold.load()
         .then(() => (
             new Promise<void>(resolve => {
                 document.fonts.add(RobotoBold);
+
+                // Draw background image (same as the one used for the PageSection)
+                const background = new Image();
+                background.src = backgroundImageSrc;
 
                 background.onload = () => {
                     // Calculate scaling factors to cover the canvas while maintaining aspect ratio
