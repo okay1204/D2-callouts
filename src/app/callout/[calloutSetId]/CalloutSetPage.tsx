@@ -2,8 +2,9 @@
 
 import Loading from "@/app/loading";
 import PageSection from "@/components/PageSection";
+import FullLogo from "@/images/full-logo.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
-import { faPen, faRotateRight, faShare, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPen, faRotateRight, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
@@ -11,7 +12,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 import Symbol from "./Symbol";
-import FullLogo from "@/images/full-logo.png";
 
 interface CustomNames {
     [imageId: number]: string
@@ -41,8 +41,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const [customNames, setCustomNames] = useState<CustomNames>({})
     const [copyTimeout, setCopyTimeout] = useState<number | null>(null)
     const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false)
-    const [scope, animate] = useAnimate()
     const [restoreDefaultsClicked, setRestoreDefaultsClicked] = useState<boolean>(false)
+    const [scope, animate] = useAnimate()
     const router = useRouter()
 
     const changeActivity = useCallback((activity: Activity | null) => {
@@ -99,6 +99,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         })
     };
 
+    // Set the selected activity and custom names based on the query params on page load
     useEffect(() => {
         if (calloutSet) {
             // read query params to see if activity is specified
@@ -305,8 +306,22 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         imageList = selectedActivity ? selectedActivity.images : calloutSet.allImages
     }
 
+    // Handle outside clicks to exit edit mode
     useEffect(() => {
-        // Animate the symbol list if all images are loaded
+        const handleClickOutside = (event: MouseEvent) => {
+            if (inEditMode && !scope.current.contains(event.target)) {
+                setInEditMode(false)
+            }
+        }
+
+        document.addEventListener('click', handleClickOutside)
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [inEditMode, scope])
+
+    // Animate the symbol list if all images are loaded
+    useEffect(() => {
         if (loadedImages.length >= imageList.length) {
             animate([
                 [`.${styles.symbolSelector}`, { opacity: 0 }, { duration: 0 }],
