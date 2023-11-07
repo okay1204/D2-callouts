@@ -2,7 +2,7 @@ import 'server-only'
 import fs from 'fs/promises'
 import path from 'path'
 import { cache } from 'react'
-import { BaseCalloutSet, RawActivity, calloutSetData } from './calloutSetData'
+import { BaseCalloutSet, RawActivity, rawCalloutSets } from './calloutSetData'
 
 export interface ImageReference {
     id: number
@@ -49,7 +49,7 @@ const getCalloutImages = cache(async (calloutSetId: string): Promise<CalloutImag
 export const getCalloutSets = cache(async (): Promise<CalloutSet[]> => {
     const calloutSets: CalloutSet[] = []
 
-    for (const rawCalloutSet of calloutSetData) {
+    for (const rawCalloutSet of rawCalloutSets) {
         const calloutImages = await getCalloutImages(rawCalloutSet.id)
         const allImages = Object.values(calloutImages)
 
