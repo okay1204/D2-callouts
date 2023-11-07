@@ -5,7 +5,7 @@ import './globals.css';
 
 
 import Navbar from '@/components/Navbar';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 
@@ -74,12 +74,16 @@ export const metadata: Metadata = {
     twitter: {
         creator: '@okay2996',
     },
-    viewport: 'width=device-width, initial-scale=1',
     applicationName: 'D2 Callouts',
     authors: [{ name: 'okay1204', url: 'https://linktr.ee/okay1204'}, { name: 'Shadowttk', url: 'https://linktr.ee/shadowttk'}],
     generator: 'Next.js',
     keywords: ['d2', 'destiny', 'destiny 2', 'callouts', 'd2 callouts', 'destiny callouts', 'vow', 'hive', 'last wish', 'symbols', 'icons', 'glyphs', 'runes', 'raid', 'raid callouts', 'raid symbols', 'raid icons', 'raid glyphs', 'raid runes'],
-    icons: '/favicon.ico',
+    icons: '/favicon.ico'
+}
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
     themeColor: '#3D3B8E',
     colorScheme: 'dark',
 }
