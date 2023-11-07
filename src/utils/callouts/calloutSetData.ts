@@ -14,7 +14,7 @@ export interface RawCalloutSet extends BaseCalloutSet {
     activities: RawActivity[];
 }
 
-export const rawCalloutSets: RawCalloutSet[] = [
+export const calloutSetData: RawCalloutSet[] = [
     {
         name: 'Wish Symbols',
         activities: [
