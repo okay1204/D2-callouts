@@ -1,6 +1,6 @@
-import { MapPosition } from "@/utils/maps/maps"
+import type { MapPosition, Map } from "@/utils/maps/maps"
 
-export const positions: MapPosition[] = [
+const positions: MapPosition[] = [
     { id: 1, x: 421, y: 583, defaultName: 'L1' },
     { id: 2, x: 194, y: 571, defaultName: 'L2' },
     { id: 3, x: 317, y: 382, defaultName: 'L3' },
@@ -19,3 +19,11 @@ export const positions: MapPosition[] = [
     { id: 16, x: 611, y: 420, defaultName: 'Middle' },
     { id: 17, x: 712, y: 337, defaultName: 'Right' }
 ]
+
+const map: Map = {
+    id: 'planets',
+    name: 'Planets',
+    positions
+}
+
+export default map;
