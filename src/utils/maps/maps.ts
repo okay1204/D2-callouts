@@ -1,4 +1,3 @@
-import { cache } from 'react';
 import 'server-only';
 import ronMapset from './root-of-nightmares/mapset';
 
@@ -21,8 +20,4 @@ export interface MapSet {
     maps: Map[];
 }
 
-export const getMapData = cache(async (): Promise<MapSet[]> => {
-    const mapSets: MapSet[] = [ronMapset];
-
-    return mapSets.filter(Boolean) as MapSet[]; // remove any nulls from non-directories
-})
+export const mapSets: MapSet[] = [ronMapset];
