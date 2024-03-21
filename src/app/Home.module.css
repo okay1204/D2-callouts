@@ -70,6 +70,22 @@
     align-items: flex-end;
 }
 
+.calloutTypePicker {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    width: fit-content;
+    background-color: gray;
+}
+
+.calloutTypeButton {
+    font-size: 1.5rem;
+    padding: 1rem;
+    transition: all 0.2s linear;
+}
+
 .calloutSetSlideshowWrapper {
     position: relative;
     flex-basis: 25vw;

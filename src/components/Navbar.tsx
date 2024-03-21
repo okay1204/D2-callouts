@@ -1,29 +1,33 @@
 'use client'
 
-import FullLogo from '@/images/full-logo.png'
 import Logo from '@/images/logo.png'
-import KofiButton from "kofi-button"
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Navbar.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import SavedSetsButtonBorder from '@/images/saved-sets-button-border.svg'
 
 export default function Navbar() {
     return (
         <nav className={styles.nav}>
-            <Link href="/" className={styles.logoContainer}>
+            <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+            <div className={styles.searchBar}>
+                <FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} />
+                <input type="text" className={styles.searchBarText} placeholder="Activity Search" />
+            </div>
+            <Link href="/" className={styles.savedSetsButton}>
                 <Image
-                    src={FullLogo}
-                    className={`${styles.logo} ${styles.fullLogo}`}
-                    alt="D2 Callouts Logo"
+                    src={SavedSetsButtonBorder}
+                    className={styles.savedSetsButtonBorder}
+                    alt=''
                 />
                 <Image
                     src={Logo}
-                    className={`${styles.logo} ${styles.logoIcon}`}
+                    className={styles.logo}
                     alt="D2 Callouts Logo"
                 />
             </Link>
-            
-            <KofiButton title='Buy us a coffee' color='var(--primary-darker)' kofiID='zackariaghanbari'/>
         </nav>
     )
 }

@@ -7,14 +7,6 @@
     scroll-padding-top: 0;
 }
 
-.subtractNavHeight {
-    min-height: calc(100vh - var(--navbar-height));
-}
-
-.navHeight {
-    height: var(--navbar-height);
-}
-
 .section > * {
     z-index: 1;
 }

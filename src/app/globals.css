@@ -1,7 +1,11 @@
 :root {
-    --background: #02050e;
-    --background-secondary: #001426;
+    --background: #000000;
+    --background-secondary: #222222;
     --background-tertiary: #0c101b;
+
+    --foreground: #ffffff;
+
+    --border-primary: rgba(255, 255, 255, 0.2);
 
     --text-primary: #ffffff;
     --text-secondary-dark: #707f91;
@@ -15,8 +19,6 @@
     --secondary-lighter: #003B36;
 
     --tertiary: #E4FDE1;
-
-    --navbar-height: 112px;
 }
 
 html {
@@ -60,7 +62,6 @@ a {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    color: var(--text-secondary);
     font-family: var(--font-primary);
 }
 

@@ -3,13 +3,11 @@
 import PageSection from '@/components/PageSection'
 import Slideshow from '@/components/Slideshow'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
+import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
 import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
-import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
 import PlanetsBackground from '@/images/planets-background.png'
-import RaidEmblem from '@/images/raid-emblem.png'
-import SpaceBackground from '@/images/space-background.png'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -43,59 +41,18 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
 
     return (
         <div className={styles.homePage}>
-            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder includeNavHeight>
-                <div className={styles.banner}>
-
-                    <motion.div
-                        initial={{ x: -100, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        className={styles.bannerText}
-                    >
-                        <h1>Destiny&nbsp;2&nbsp;Callouts Made&nbsp;Simple</h1>
-                        <span>View, customize and share callouts in an instant</span>
-                        <button onClick={() => calloutSetRef.current?.scrollIntoView({ behavior: 'smooth' })}>Get Started</button>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 100, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        animate={{
-                            y: [null, -20],
-                            transition: {
-                                repeat: Infinity,
-                                repeatType: 'mirror',
-                                duration: 5,
-                                ease: 'easeInOut',
-                            }
-                        }}
-                        className={styles.bannerImageContainer}
-                    >
-                        <Image
-                            className={styles.bannerImage}
-                            src={RaidEmblem}
-                            alt='Raid Emblem'
-                        />
-                    </motion.div>
-                </div>
-            </PageSection>
-            
             <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background' ref={calloutSetRef}>
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>
-                        <motion.div
-                            initial={{ x: 100, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            className={styles.calloutSetSlideshowWrapper}
-                        >
-                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, MenacingCrota]} />
-                        </motion.div>
                         <div className={styles.calloutListSection}>
-                            <motion.h1
-                                className={styles.calloutListHeader}
-                                initial={{ y: 100, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                            >
-                                Symbol Callouts
-                            </motion.h1>
+                            <div className={styles.calloutTypePicker}>
+                                <div className={styles.calloutTypeButton}>
+                                    Symbols
+                                </div>
+                                <div className={styles.calloutTypeButton}>
+                                    Maps
+                                </div>
+                            </div>
                             <div className={styles.calloutList}>
                                 {calloutSets.map(calloutSet => (
                                     <motion.div
@@ -148,6 +105,13 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                 ))}
                             </div>
                         </div>
+                        <motion.div
+                            initial={{ x: 100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            className={styles.calloutSetSlideshowWrapper}
+                        >
+                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, MenacingCrota]} />
+                        </motion.div>
                     </div>
                 </div>
             </PageSection>
