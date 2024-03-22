@@ -1,6 +1,7 @@
 .nav {
     background-color: var(--background);
     border: 1px var(--border-primary);
+    border-style: solid none;
     width: 100%;
     position: absolute;
     display: flex;
@@ -8,7 +9,6 @@
     justify-content: space-between;
     height: 93px;
     padding: 0 32px;
-    border-style: solid none;
     z-index: 100;
 }
 
@@ -68,7 +68,7 @@
     height: 25px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
     .searchBar {
         width: 80%;
         margin: 0 15px;
