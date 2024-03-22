@@ -28,7 +28,6 @@
     margin: 1.5rem 0;
     font-size: 1em;
     font-weight: 800;
-    font-family: var(--font-title);
     color: var(--text-primary);
     border: 2px var(--text-primary) solid;
     padding: 1rem;
@@ -64,10 +63,21 @@
 
 .calloutSplitter {
     width: 100%;
-    margin: 0 5rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+    margin: 10rem 12rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1.5fr 1fr;
+    height: 70vh;
+    background-color: rgba(0, 3, 10, 0.4);
+    border-radius: 1px;
+    padding: 2rem;
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(8px);
+    gap: 3rem;
+}
+
+.calloutSplitter * {
+    font-family: var(--font-primary);
 }
 
 .calloutTypePicker {
@@ -77,22 +87,67 @@
     align-items: center;
     margin: 1rem auto;
     width: fit-content;
-    background-color: gray;
+    background-color: rgba(220, 220, 220, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .calloutTypeButton {
     font-size: 1.5rem;
-    padding: 1rem;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem;
     transition: all 0.2s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    user-select: none;
+}
+
+.calloutTypeButton:not(.selectedCalloutType):hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calloutTypeButton:not(.selectedCalloutType) {
+    color: var(--text-tertiary);
+}
+
+.selectedCalloutType {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+.calloutTypeText {
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+/* make calloutTypeIcon change color when it is in the selected state */
+.calloutTypeButton.selectedCalloutType .calloutTypeIcon {
+    /* Generated with https://codepen.io/sosuke/pen/Pjoqqp */
+    /* Target color is #6A9DFF */
+    filter: invert(59%) sepia(28%) saturate(1244%) hue-rotate(188deg) brightness(93%) contrast(107%);
+}
+
+.calloutTypeButton:not(.selectedCalloutType) .calloutTypeIcon {
+    /* Generated with https://codepen.io/sosuke/pen/Pjoqqp */
+    /* Target color is #979797 */
+    filter: invert(51%) sepia(66%) saturate(0%) hue-rotate(211deg) brightness(101%) contrast(97%);
 }
 
 .calloutSetSlideshowWrapper {
     position: relative;
-    flex-basis: 25vw;
+    /* height: 100%; */
+    /* flex-basis: 30%; */
+    /* flex-shrink: 1; */
 }
 
 .calloutListSection {
-    flex-basis: 45%;
+    flex-basis: 60%;
 }
 
 .calloutListHeader {
@@ -116,7 +171,7 @@
     border: 1px white solid;
     border-radius: 8px;
     width: 100%;
-    height: 140px;
+    height: 110px;
     padding: 1rem;
     cursor: pointer;
     transition: border 0.2s ease-in-out;
@@ -203,7 +258,7 @@
     }
 
     .calloutSetSlideshowWrapper {
-        flex-basis: 32vw;
+        /* flex-basis: 32vw; */
     }
 }
 
@@ -247,7 +302,7 @@
     }
 
     .calloutSetSlideshowWrapper {
-        display: none;
+        /* display: none; */
     }
 
     .calloutSetArrow {

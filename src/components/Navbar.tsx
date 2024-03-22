@@ -6,7 +6,7 @@ import Link from 'next/link'
 import styles from './Navbar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import SavedSetsButtonBorder from '@/images/saved-sets-button-border.svg'
+import SavedSetsButtonBorder from '@/images/icons/saved-sets-button-border.svg'
 
 export default function Navbar() {
     return (

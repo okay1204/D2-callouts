@@ -29,10 +29,11 @@
     align-items: flex-start;
     width: 50%;
     margin: 10px auto;
+    font-family: var(--font-primary);
 }
 
 .footerContent * {
-    font-family: var(--font-primary);
+    /* font-family: var(--font-primary); */
 }
 
 .footerContent a:hover {

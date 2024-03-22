@@ -30,7 +30,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'wish-symbols',
-        bannerImageId: 15
+        bannerImageId: 5
     },
     {
         name: 'Hive Runes',
@@ -52,7 +52,7 @@ export const rawCalloutSets: RawCalloutSet[] = [
             },
         ],
         id: 'hive-runes',
-        bannerImageId: 15
+        bannerImageId: 7
     },
     {
         name: 'Glyphs',

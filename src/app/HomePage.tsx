@@ -2,12 +2,14 @@
 
 import PageSection from '@/components/PageSection'
 import Slideshow from '@/components/Slideshow'
+import EarthBackground from '@/images/earth-background.png'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
 import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
 import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
 import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
-import PlanetsBackground from '@/images/planets-background.png'
+import SymbolsIcon from '@/images/icons/symbols.svg'
+import MapsIcon from '@/images/icons/maps.svg'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +17,7 @@ import { Variants, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import styles from './Home.module.css'
 
 const calloutSetVariants: Variants = {
@@ -35,22 +37,32 @@ const calloutSetVariants: Variants = {
 export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] }) {
     const [hoveredCalloutSet, setHoveredCalloutSet] = useState<string | null>(null);
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
-    const calloutSetRef = useRef<HTMLHeadingElement>(null);
+    const [symbolsSelected, setSymbolsSelected] = useState(true);
 
     const router = useRouter();
 
     return (
         <div className={styles.homePage}>
-            <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background' ref={calloutSetRef}>
+            <PageSection backgroundSrc={EarthBackground} backgroundAlt='Earth Background'>
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>
                         <div className={styles.calloutListSection}>
                             <div className={styles.calloutTypePicker}>
-                                <div className={styles.calloutTypeButton}>
-                                    Symbols
+                                <div className={`${styles.calloutTypeButton} ${symbolsSelected ? styles.selectedCalloutType : ''}`} onClick={() => setSymbolsSelected(true)}>
+                                    <Image 
+                                        src={SymbolsIcon}
+                                        alt='Symbols Icon'
+                                        className={styles.calloutTypeIcon}
+                                    />
+                                    <h2 className={styles.calloutTypeText}>Symbols</h2>
                                 </div>
-                                <div className={styles.calloutTypeButton}>
-                                    Maps
+                                <div className={`${styles.calloutTypeButton} ${!symbolsSelected ? styles.selectedCalloutType : ''}`} onClick={() => setSymbolsSelected(false)}>
+                                    <Image 
+                                        src={MapsIcon}
+                                        alt='Maps Icon'
+                                        className={styles.calloutTypeIcon}
+                                    />
+                                    <h2 className={styles.calloutTypeText}>Maps</h2>
                                 </div>
                             </div>
                             <div className={styles.calloutList}>
@@ -65,12 +77,6 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                         key={calloutSet.id}
                                         onClick={() => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
                                     >
-                                        <Image 
-                                            className={styles.calloutSetBackground}
-                                            src={`/images/callouts/${calloutSet.id}/extra/banner-background.png`}
-                                            alt='Callout Set Background'
-                                            fill
-                                        />
                                         <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                             <Image
                                                 fill
