@@ -21,7 +21,7 @@
 }
 
 .searchBar {
-    width: 30%;
+    width: 35%;
     background-color: var(--background-secondary);
     color: var(--text-primary);
     padding: 0 15px;
@@ -29,11 +29,15 @@
     gap: 10px;
     border-radius: 36px;
     display: flex;
-    align-items: center;
+    align-items: center;    
 }
 
 .searchIcon {
     color: rgba(132, 132, 132, 1);
+}
+
+.searchBarText {
+    width: 100%;
 }
 
 .savedSetsButton {
@@ -64,8 +68,9 @@
     height: 25px;
 }
 
-@media (max-width: 768px) {
-    .nav {
-        padding: 0;
+@media (max-width: 800px) {
+    .searchBar {
+        width: 80%;
+        margin: 0 15px;
     }
 }

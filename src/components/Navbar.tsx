@@ -11,7 +11,9 @@ import SavedSetsButtonBorder from '@/images/saved-sets-button-border.svg'
 export default function Navbar() {
     return (
         <nav className={styles.nav}>
-            <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+            <button className={styles.menuButton}>
+                <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+            </button>
             <div className={styles.searchBar}>
                 <FontAwesomeIcon className={styles.searchIcon} icon={faMagnifyingGlass} />
                 <input type="text" className={styles.searchBarText} placeholder="Activity Search" />
