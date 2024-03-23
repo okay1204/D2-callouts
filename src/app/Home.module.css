@@ -1,59 +1,3 @@
-.banner {
-    display: flex;
-    width: 70%;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto auto;
-    position: relative;
-}
-
-.bannerText {
-    flex-basis: 35%;
-    font-size: 1.6rem;
-}
-
-.bannerText h1 {
-    font-size: 2.5em;
-    margin-bottom: 1rem;
-    font-weight: 900;
-}
-
-.bannerText span {
-    display: block;
-    font-size: 1em;
-}
-
-.bannerText button {
-    margin: 1.5rem 0;
-    font-size: 1em;
-    font-weight: 800;
-    color: var(--text-primary);
-    border: 2px var(--text-primary) solid;
-    padding: 1rem;
-    border-radius: 2rem;
-    transition: all 0.2s linear;
-}
-
-.bannerText button:hover {
-    background-color: var(--text-primary);
-    color: var(--background);
-}
-
-.bannerImageContainer {
-    position: relative;
-    flex-basis: 35%;
-    margin-left: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bannerImage {
-    width: 100%;
-    height: 100%;
-}
-
 .calloutSectionCenterAligner {
     flex-grow: 1;
     display: flex;
@@ -62,10 +6,9 @@
 }
 
 .calloutSplitter {
-    width: 70%;
-    display: grid;
+    width: 60%;
+    display: flex;
     align-items: center;
-    grid-template-columns: 1.5fr 1fr;
     height: 600px;
     background-color: rgba(0, 3, 10, 0.4);
     border-radius: 1px;
@@ -140,10 +83,8 @@
 
 .calloutSetSlideshowWrapper {
     position: relative;
-    width: 100%;
-    padding: 40px;
-    /* flex-basis: 30%; */
-    /* flex-shrink: 1; */
+    width: 550px;
+    padding: 20px;
 }
 
 .calloutListSection {
@@ -263,32 +204,24 @@
 }
 
 @media screen and (max-width: 2100px) {
-    .bannerText {
-        font-size: 1.25rem;
-    }
-
-    .calloutSetSlideshowWrapper {
-        /* flex-basis: 32vw; */
+    .calloutSplitter {
+        width: 70%;
     }
 }
 
 @media screen and (max-width: 1500px) {
     .calloutSplitter {
-        margin: 0;
+        width: 98%;
+    }
+
+    .calloutSetSlideshowWrapper {
+        padding: 10px;
     }
 }
 
 @media screen and (max-width: 1300px) {
-    .banner {
-        width: 90%;
-    }
-
-    .bannerText {
-        font-size: 1rem;
-    }
-
-    .bannerImageContainer {
-        flex-basis: 30%;
+    .calloutSplitter {
+        width: 80%;
     }
 
     .calloutListSection {
@@ -312,7 +245,7 @@
     }
 
     .calloutSetSlideshowWrapper {
-        /* display: none; */
+        display: none;
     }
 
     .calloutSetArrow {
@@ -321,19 +254,9 @@
 }
 
 @media screen and (max-width: 850px) {
-    .banner {
-        flex-direction: column-reverse;
-    }
-
-    .bannerText {
-        flex-basis: 100%;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .bannerImageContainer {
-        margin-left: 0;
-        width: 60%;
+    .calloutSplitter {
+        padding: 0;
+        width: 99%;
     }
 
     .calloutListSection {
@@ -363,24 +286,39 @@
         height: 5rem;
     }
 
+    .calloutSetDivider {
+        position: absolute;
+        left: 7rem;
+    }
+
     .calloutSetActivityList {
         display: none;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .bannerText {
-        font-size: 0.8rem;
+    .calloutSplitter {
+        height: 800px;
     }
 
-    .bannerText h1 {
-        font-size: 2em;
+    .calloutTypePicker {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .calloutTypeText {
+        font-size: 1rem;
     }
 
     .calloutSetSymbolContainer {
         margin: 0.1rem;
         width: 4rem;
         height: 4rem;
+    }
+
+    .calloutSetDivider {
+        position: absolute;
+        left: 5.5rem;
     }
 
     .calloutSetText h2 {
