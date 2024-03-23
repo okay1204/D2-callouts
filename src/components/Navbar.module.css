@@ -12,12 +12,12 @@
     z-index: 100;
 }
 
-.menuIcon {
-    font-size: 2rem;
+.homeButton:hover {
+    opacity: 0.9;
 }
 
-.menuIcon * {
-    color: var(--foreground);
+.homeIcon {
+    font-size: 2rem;
 }
 
 .searchBar {
