@@ -46,13 +46,13 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
                     `}
                 </Script>
 
-                <Navbar />
                 <div className={styles.webpageContainer}>
+                    <Navbar />
                     <main>
                         {children}
                     </main>
+                    <Footer />
                 </div>
-                <Footer />
             </body>
         </html>
     )

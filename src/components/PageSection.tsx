@@ -15,7 +15,7 @@ const PageSection = forwardRef<HTMLDivElement, PageSectionProps>(
         return (
             <section className={`${styles.section} ${bottomBorder ? styles.bottomBorder : ''}`} ref={ref}>
                 <Image
-                    className={`${styles.sectionBackground}  ${imageClassName}`}
+                    className={`${styles.sectionBackground} ${imageClassName}`}
                     src={backgroundSrc}
                     alt={backgroundAlt}
                     fill

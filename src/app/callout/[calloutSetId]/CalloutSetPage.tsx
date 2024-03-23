@@ -337,7 +337,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const backgroundImageSrc = `/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`
 
     return (
-        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight>
+        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='Planets background' imageClassName={styles.backgroundImage}>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {
@@ -374,8 +374,6 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                         </>
                     )
                 }
-
-                {/* <hr className={styles.divider} /> */}
 
                 {loadedImages.length < imageList.length && <Loading />}
                 <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide-visibility' : ''}`}>
