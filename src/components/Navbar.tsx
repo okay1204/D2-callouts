@@ -20,8 +20,9 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
     const [searchText, setSearchText] = useState('')
     const [searchResults, setSearchResults] = useState<SearchResult[]>([])
     const [searchBarFocused, setSearchBarFocused] = useState(false)
+    const [isHoveringSearchResults, setIsHoveringSearchResults] = useState(false)
 
-    function handleSearch(newSearchText: string) {
+    function handleSearchTyping(newSearchText: string) {
         setSearchText(newSearchText)
 
         if (newSearchText === '') {
@@ -47,6 +48,12 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
         setSearchResults(searchResults)
     }
 
+    const handleSearchResultClick = () => {
+        setSearchBarFocused(false)
+        setSearchText('')
+        setSearchResults([])
+    }
+
     const searchBar = (main: boolean) => (
         <div className={`${styles.searchBar} ${main ? styles.searchBar1 : styles.searchBar2}`}>
             <div className={`${styles.searchBarAbsolute} ${searchBarFocused ? styles.searchBarFocused: ''}`}>
@@ -57,12 +64,17 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
                         className={styles.searchBarText}
                         placeholder="Activity Search"
                         value={searchText}
-                        onChange={e => handleSearch(e.target.value)}
+                        onChange={e => handleSearchTyping(e.target.value)}
                         onFocus={() => setSearchBarFocused(true)}
-                        onBlur={() => setSearchBarFocused(false)}
+                        onBlur={() => !isHoveringSearchResults && setSearchBarFocused(false)}
                     />
                 </div>
-                <div className={styles.searchResultList}>
+                <div
+                    className={styles.searchResultList}
+                    onMouseEnter={() => setIsHoveringSearchResults(true)}
+                    onMouseLeave={() => setIsHoveringSearchResults(false)}
+                    onClick={handleSearchResultClick}
+                >
                     {searchBarFocused && searchResults.map(result => (
                         <Link href={`/callout/${result.calloutSetId}?activity=${result.activity.id}`} key={result.activity.id} className={styles.searchResult}>
                             <div className={styles.searchResultText}>
