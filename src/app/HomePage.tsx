@@ -72,6 +72,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                         whileInView="visible"
                                         variants={calloutSetVariants}
                                         className={styles.calloutSet}
+                                        // style={{ maxHeight: hoveredCalloutSet === calloutSet.id ? (23 * calloutSet.activities.length) + 110 : 110 }}
                                         onMouseEnter={() => setHoveredCalloutSet(calloutSet.id)}
                                         onMouseLeave={() => setHoveredCalloutSet(null)}
                                         key={calloutSet.id}
@@ -80,12 +81,13 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                         <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                             <Image
                                                 fill
-                                                sizes="5.25rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
+                                                sizes="4.25rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
                                                 className={styles.calloutSetSymbol}
                                                 src={calloutSet.bannerImage.url}
                                                 alt='Callout Set Symbol'
                                             />
                                         </div>
+                                        <div className={styles.calloutSetDivider} style={{backgroundColor: calloutSet.bannerColor}} />
                                         <div className={styles.calloutSetText}>
                                             <h2>{calloutSet.name}</h2>
                                             <ul
