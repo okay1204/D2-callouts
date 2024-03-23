@@ -3,12 +3,25 @@
     border: 1px var(--border-primary);
     border-style: solid none;
     width: 100%;
+    padding: 5.5px 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topRow {
+    padding: 0 34px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 93px;
-    padding: 0 32px;
-    z-index: 10;
+}
+
+.bottomRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .homeButton:hover {
@@ -21,14 +34,37 @@
 
 .searchBar {
     width: 35%;
+    position: relative;
+}
+
+.searchBar2 {
+    display: none;
+}
+
+.searchBarAbsolute {
+    position: absolute;
+    width: 100%;
     background-color: var(--background-secondary);
     color: var(--text-primary);
-    padding: 0 15px;
-    height: 46px;
-    gap: 10px;
     border-radius: 36px;
     display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.searchInputArea {
+    padding: 0 15px;
+    display: flex;
     align-items: center;    
+    gap: 10px;
+}
+
+.searchBar, .searchInputArea {
+    height: 46px;
+}
+
+.searchBarFocused {
+    border: 1px solid rgba(255, 255, 255, 0.647);
 }
 
 .searchIcon {
@@ -37,6 +73,39 @@
 
 .searchBarText {
     width: 100%;
+}
+
+.searchResultList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.searchResult {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    transition: all 0.1s linear;
+}
+
+.searchResult:hover {
+    background-color: var(--background-tertiary);
+}
+
+.searchResult:last-child {
+    padding-bottom: 20px;
+}
+
+.searchResultName {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 800;
+}
+
+.searchResultSet {
+    display: block;
+    font-size: 1em;
+    color: var(--text-tertiary);
 }
 
 .savedSetsButton {
@@ -69,7 +138,30 @@
 
 @media (max-width: 850px) {
     .searchBar {
-        width: 80%;
+        width: 100%;
         margin: 0 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .searchBar {
+        width: 100%;
+    }
+
+    .searchBar, .searchInputArea {
+        height: 36px;
+    }
+
+    .searchResultList {
+        font-size: 0.8em;
+    }
+
+    .searchBar1 {
+        display: none;
+    }
+
+    .searchBar2 {
+        display: block;
+        margin-bottom: 5px;
     }
 }

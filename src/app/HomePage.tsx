@@ -2,14 +2,15 @@
 
 import PageSection from '@/components/PageSection'
 import Slideshow from '@/components/Slideshow'
+import WelcomeModal from '@/components/WelcomeModal'
 import EarthBackground from '@/images/earth-background.png'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
 import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
 import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
 import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
-import SymbolsIcon from '@/images/icons/symbols.svg'
 import MapsIcon from '@/images/icons/maps.svg'
+import SymbolsIcon from '@/images/icons/symbols.svg'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,7 +20,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './Home.module.css'
-import WelcomeModal from '@/components/WelcomeModal'
 
 const calloutSetVariants: Variants = {
     visible: {
