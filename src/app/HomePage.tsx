@@ -17,8 +17,9 @@ import { Variants, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Home.module.css'
+import WelcomeModal from '@/components/WelcomeModal'
 
 const calloutSetVariants: Variants = {
     visible: {
@@ -38,11 +39,26 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
     const [hoveredCalloutSet, setHoveredCalloutSet] = useState<string | null>(null);
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
     const [symbolsSelected, setSymbolsSelected] = useState(true);
+    const [welcomeModalOpen, setWelcomeModalOpen] = useState(false);
+
+    // Only show the welcome modal if it's the user's first time visiting the site
+    useEffect(() => {
+        if (!localStorage.getItem('welcomeModalAcknowledged')) {
+            setWelcomeModalOpen(true);
+        }
+    }, []);
+    
+    const handleWelcomeModalButtonClick = () => {
+        setWelcomeModalOpen(false);
+        localStorage.setItem('welcomeModalAcknowledged', 'true');
+    }
 
     const router = useRouter();
 
     return (
         <div className={styles.homePage}>
+            {welcomeModalOpen && <WelcomeModal onButtonClick={handleWelcomeModalButtonClick} />}
+
             <PageSection backgroundSrc={EarthBackground} backgroundAlt='Earth Background'>
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>

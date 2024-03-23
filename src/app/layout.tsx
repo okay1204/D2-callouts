@@ -19,7 +19,7 @@ const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['500', '800', '900'],
     display: 'swap',
-    variable: '--font-title',
+    variable: '--font-secondary',
 })
 
 const roboto = Roboto({
@@ -51,8 +51,8 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
                     <main>
                         {children}
                     </main>
-                    <Footer />
                 </div>
+                <Footer />
             </body>
         </html>
     )

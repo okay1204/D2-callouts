@@ -9,7 +9,7 @@
     justify-content: space-between;
     height: 93px;
     padding: 0 32px;
-    z-index: 100;
+    z-index: 10;
 }
 
 .homeButton:hover {

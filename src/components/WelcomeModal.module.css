@@ -1,0 +1,96 @@
+.welcomeModalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Disable scrolling when the modal is open */
+*:has(.welcomeModalBackground) {
+    overflow: hidden;
+}
+
+.welcomeModal {
+    width: 600px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 24px;
+    border: 1px solid var(--border-primary);
+}
+
+.logoContainer {
+    position: relative;
+    height: 200px;
+    text-align: center;
+    user-select: none;
+}
+
+.logo {
+    width: auto;
+    height: 100%;
+}
+
+.text {
+    font-family: var(--font-primary);
+    text-align: center;
+}
+
+.header1 {
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
+.header2 {
+    font-weight: 800;
+}
+
+.divider {
+    display: block;
+    margin: 35px auto;
+    width: 40%;
+    border: 1px solid var(--text-tertiary)
+}
+
+.getStartedButton {
+    display: block;
+    margin: 0 auto;
+    width: 65%;
+    text-align: center;
+    background-color: #8A6C00;
+    border: 1px solid #FFC700;
+    border-radius: 42px;
+    padding: 15px;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+    font-size: 15px;
+}
+
+.version {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+    font-family: var(--font-secondary);
+    color: var(--text-quaternary);
+    font-size: 12px;
+}
+
+@media screen and (max-width: 650px) {
+    .welcomeModal {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .welcomeModal {
+        padding: 10px;
+        font-size: 0.7em;
+    }
+}
