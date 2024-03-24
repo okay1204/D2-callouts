@@ -10,14 +10,14 @@ interface SymbolProps {
     selectorClassName: string
     inEditMode: boolean
     setInEditMode: (inEditMode: boolean) => void
-    onLoadingComplete: () => void
+    onLoad: () => void
     name: string
     onNameChange: (ChangeEvent: ChangeEvent<HTMLTextAreaElement>) => void
     restoreDefaultsClicked: boolean
 }
 
 const maxRows = 2;
-export default function Symbol({imageReference, selectorClassName, inEditMode, setInEditMode, onLoadingComplete, name, onNameChange, restoreDefaultsClicked}: SymbolProps) {
+export default function Symbol({imageReference, selectorClassName, inEditMode, setInEditMode, onLoad: onLoad, name, onNameChange, restoreDefaultsClicked}: SymbolProps) {
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const [wasClicked, setWasClicked] = useState<boolean>(false);
     const [originalName, setOriginalName] = useState<string | undefined>(undefined);
@@ -75,7 +75,7 @@ export default function Symbol({imageReference, selectorClassName, inEditMode, s
                 <Image
                     fill
                     priority
-                    onLoadingComplete={onLoadingComplete}
+                    onLoad={onLoad}
                     sizes="6rem, (max-width: 750px) 5rem"
                     className={styles.symbolImage}
                     src={imageReference.url}

@@ -136,7 +136,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 }
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const downloadImage = () => {
@@ -337,7 +337,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const backgroundImageSrc = `/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`
 
     return (
-        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='Planets background' imageClassName={styles.backgroundImage}>
+        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='' imageClassName={styles.backgroundImage}>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {
@@ -395,7 +395,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                                 selectorClassName={styles.symbolSelector}
                                 inEditMode={inEditMode}
                                 setInEditMode={setInEditMode}
-                                onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
+                                onLoad={() => { handleImageLoad(imageReference.id) }}
                                 name={customNames[imageReference.id] ?? imageReference.name}
                                 onNameChange={e => handleNameChange(imageReference.id, e.target.value)}
                                 restoreDefaultsClicked={restoreDefaultsClicked}
