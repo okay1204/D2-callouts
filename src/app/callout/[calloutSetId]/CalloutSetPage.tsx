@@ -57,8 +57,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         }
 
         // set query params to reflect the selected activity, or remove them if null
-        router.replace(`${window.location.pathname}?${urlParams.toString()}`)
-    }, [router])
+        window.history.replaceState(null, '', `${window.location.pathname}?${urlParams.toString()}`)
+    }, [])
 
     const onRestoreDefaults = () => {
         setCustomNames({})
@@ -136,9 +136,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 }
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    }, [calloutSet, changeActivity])
+    
     const downloadImage = () => {
         if (isGeneratingImage) return
         setIsGeneratingImage(true)
