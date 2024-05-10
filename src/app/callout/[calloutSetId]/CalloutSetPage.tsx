@@ -1,6 +1,6 @@
 'use client'
 
-import Loading from "@/app/loading";
+import Loading from "@/components/loading";
 import PageSection from "@/components/PageSection";
 import FullLogo from "@/images/full-logo.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
