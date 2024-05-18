@@ -1,14 +1,13 @@
 'use client'
 
-import Loading from "@/components/loading";
 import PageSection from "@/components/PageSection";
+import Loading from "@/components/loading";
 import FullLogo from "@/images/full-logo.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
 import { faDownload, faPen, faRotateRight, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 import Symbol from "./Symbol";
@@ -43,8 +42,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false)
     const [restoreDefaultsClicked, setRestoreDefaultsClicked] = useState<boolean>(false)
     const [scope, animate] = useAnimate()
-    const router = useRouter()
-
+    
     const changeActivity = useCallback((activity: Activity | null) => {
         setSelectedActivity(activity)
 
