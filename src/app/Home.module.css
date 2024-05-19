@@ -317,8 +317,7 @@
     }
 
     .calloutSetDivider {
-        position: absolute;
-        left: 5.5rem;
+        display: none;
     }
 
     .calloutSetText h2 {
