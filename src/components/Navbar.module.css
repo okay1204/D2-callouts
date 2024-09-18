@@ -165,3 +165,18 @@
         margin-bottom: 5px;
     }
 }
+
+.comingSoonTooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 10px;
+    z-index: 100;
+}

@@ -21,6 +21,7 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([])
     const [searchBarFocused, setSearchBarFocused] = useState(false)
     const [isHoveringSearchResults, setIsHoveringSearchResults] = useState(false)
+    const [isSavedSetsHovered, setIsSavedSetsHovered] = useState(false)
 
     function handleSearchTyping(newSearchText: string) {
         setSearchText(newSearchText)
@@ -95,7 +96,11 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
                     <FontAwesomeIcon className={styles.homeIcon} icon={faHome} />
                 </Link>
                 {searchBar(true)}
-                <Link href="/" className={styles.savedSetsButton}>
+                <div 
+                    className={`${styles.savedSetsButton} ${styles.disabledButton}`}
+                    onMouseEnter={() => setIsSavedSetsHovered(true)}
+                    onMouseLeave={() => setIsSavedSetsHovered(false)}
+                >
                     <Image
                         src={SavedSetsButtonBorder}
                         className={styles.savedSetsButtonBorder}
@@ -106,7 +111,12 @@ export default function Navbar({calloutSets}: {calloutSets: CalloutSet[]}) {
                         className={styles.logo}
                         alt="D2 Callouts Logo"
                     />
-                </Link>
+                    {isSavedSetsHovered && (
+                        <div className={styles.comingSoonTooltip}>
+                            Saved Sets<br />Coming Soon!
+                        </div>
+                    )}
+                </div>
             </div>
             <div className={styles.bottomRow}>
                 {searchBar(false)}
