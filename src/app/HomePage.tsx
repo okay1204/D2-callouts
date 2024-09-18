@@ -2,14 +2,15 @@
 
 import PageSection from '@/components/PageSection'
 import Slideshow from '@/components/Slideshow'
+import WelcomeModal from '@/components/WelcomeModal'
+import EarthBackground from '@/images/earth-background.png'
 import KingsFallDoor from '@/images/home-carousel/kings-fall-door.png'
+import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import MenacingOryx from '@/images/home-carousel/menacing-oryx.png'
 import MenacingRhulk from '@/images/home-carousel/menacing-rhulk.png'
-import MenacingCrota from '@/images/home-carousel/menacing-crota.png'
 import WitnessWitnessing from '@/images/home-carousel/witness-witnessing.png'
-import PlanetsBackground from '@/images/planets-background.png'
-import RaidEmblem from '@/images/raid-emblem.png'
-import SpaceBackground from '@/images/space-background.png'
+import MapsIcon from '@/images/icons/maps.svg'
+import SymbolsIcon from '@/images/icons/symbols.svg'
 import { CalloutSet } from '@/utils/callouts/calloutSets'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,7 +18,7 @@ import { Variants, motion } from "framer-motion"
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Home.module.css'
 
 const calloutSetVariants: Variants = {
@@ -37,65 +38,59 @@ const calloutSetVariants: Variants = {
 export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] }) {
     const [hoveredCalloutSet, setHoveredCalloutSet] = useState<string | null>(null);
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
-    const calloutSetRef = useRef<HTMLHeadingElement>(null);
+    const [symbolsSelected, setSymbolsSelected] = useState(true);
+    const [welcomeModalOpen, setWelcomeModalOpen] = useState(false);
+    const [isMapHovered, setIsMapHovered] = useState(false);
+
+    // Only show the welcome modal if it's the user's first time visiting the site
+    useEffect(() => {
+        if (!localStorage.getItem('welcomeModalAcknowledged')) {
+            setWelcomeModalOpen(true);
+        }
+    }, []);
+    
+    const handleWelcomeModalButtonClick = () => {
+        setWelcomeModalOpen(false);
+        localStorage.setItem('welcomeModalAcknowledged', 'true');
+    }
 
     const router = useRouter();
 
     return (
         <div className={styles.homePage}>
-            <PageSection backgroundSrc={SpaceBackground} backgroundAlt='Space background' bottomBorder includeNavHeight>
-                <div className={styles.banner}>
+            {welcomeModalOpen && <WelcomeModal onButtonClick={handleWelcomeModalButtonClick} />}
 
-                    <motion.div
-                        initial={{ x: -100, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        className={styles.bannerText}
-                    >
-                        <h1>Destiny&nbsp;2&nbsp;Callouts Made&nbsp;Simple</h1>
-                        <span>View, customize and share callouts in an instant</span>
-                        <button onClick={() => calloutSetRef.current?.scrollIntoView({ behavior: 'smooth' })}>Get Started</button>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 100, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        animate={{
-                            y: [null, -20],
-                            transition: {
-                                repeat: Infinity,
-                                repeatType: 'mirror',
-                                duration: 5,
-                                ease: 'easeInOut',
-                            }
-                        }}
-                        className={styles.bannerImageContainer}
-                    >
-                        <Image
-                            className={styles.bannerImage}
-                            src={RaidEmblem}
-                            alt='Raid Emblem'
-                        />
-                    </motion.div>
-                </div>
-            </PageSection>
-            
-            <PageSection backgroundSrc={PlanetsBackground} backgroundAlt='Planets background' ref={calloutSetRef}>
+            <PageSection backgroundSrc={EarthBackground} backgroundAlt='Earth Background'>
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>
-                        <motion.div
-                            initial={{ x: 100, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            className={styles.calloutSetSlideshowWrapper}
-                        >
-                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, MenacingCrota]} />
-                        </motion.div>
                         <div className={styles.calloutListSection}>
-                            <motion.h1
-                                className={styles.calloutListHeader}
-                                initial={{ y: 100, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                            >
-                                Symbol Callouts
-                            </motion.h1>
+                            <div className={styles.calloutTypePicker}>
+                                <div className={`${styles.calloutTypeButton} ${symbolsSelected ? styles.selectedCalloutType : ''}`} onClick={() => setSymbolsSelected(true)}>
+                                    <Image 
+                                        src={SymbolsIcon}
+                                        alt='Symbols Icon'
+                                        className={styles.calloutTypeIcon}
+                                    />
+                                    <h2 className={styles.calloutTypeText}>Symbols</h2>
+                                </div>
+                                <div 
+                                    className={`${styles.calloutTypeButton} ${styles.disabledCalloutType}`}
+                                    onMouseEnter={() => setIsMapHovered(true)}
+                                    onMouseLeave={() => setIsMapHovered(false)}
+                                >
+                                    <Image 
+                                        src={MapsIcon}
+                                        alt='Maps Icon'
+                                        className={styles.calloutTypeIcon}
+                                    />
+                                    <h2 className={styles.calloutTypeText}>Maps</h2>
+                                    {isMapHovered && (
+                                        <div className={styles.comingSoonTooltip}>
+                                            Coming Soon!
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                             <div className={styles.calloutList}>
                                 {calloutSets.map(calloutSet => (
                                     <motion.div
@@ -103,26 +98,22 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                         whileInView="visible"
                                         variants={calloutSetVariants}
                                         className={styles.calloutSet}
+                                        // style={{ maxHeight: hoveredCalloutSet === calloutSet.id ? (23 * calloutSet.activities.length) + 110 : 110 }}
                                         onMouseEnter={() => setHoveredCalloutSet(calloutSet.id)}
                                         onMouseLeave={() => setHoveredCalloutSet(null)}
                                         key={calloutSet.id}
                                         onClick={() => !isHoveringActivity && router.push(`/callout/${calloutSet.id}`)}
                                     >
-                                        <Image 
-                                            className={styles.calloutSetBackground}
-                                            src={`/images/callouts/${calloutSet.id}/extra/banner-background.png`}
-                                            alt='Callout Set Background'
-                                            fill
-                                        />
                                         <div className={styles.calloutSetSymbolContainer} key={calloutSet.bannerImage.name}>
                                             <Image
                                                 fill
-                                                sizes="5.25rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
+                                                sizes="4.25rem, (max-width: 850px) 5rem, (max-width: 450px) 4rem"
                                                 className={styles.calloutSetSymbol}
                                                 src={calloutSet.bannerImage.url}
                                                 alt='Callout Set Symbol'
                                             />
                                         </div>
+                                        <div className={styles.calloutSetDivider} style={{backgroundColor: calloutSet.bannerColor}} />
                                         <div className={styles.calloutSetText}>
                                             <h2>{calloutSet.name}</h2>
                                             <ul
@@ -148,6 +139,13 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                 ))}
                             </div>
                         </div>
+                        <motion.div
+                            initial={{ x: 100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            className={styles.calloutSetSlideshowWrapper}
+                        >
+                            <Slideshow images={[WitnessWitnessing, KingsFallDoor, MenacingOryx, MenacingRhulk, MenacingCrota]} />
+                        </motion.div>
                     </div>
                 </div>
             </PageSection>

@@ -8,6 +8,7 @@
     justify-content: center;
     flex-direction: column;
     flex-grow: 1;
+    margin-top: 30px;
 }
 
 .title {

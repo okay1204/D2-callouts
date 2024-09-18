@@ -1,14 +1,13 @@
 'use client'
 
-import Loading from "@/app/loading";
 import PageSection from "@/components/PageSection";
+import Loading from "@/components/loading";
 import FullLogo from "@/images/full-logo.png";
 import { Activity, CalloutSet, ImageReference } from "@/utils/callouts/calloutSets";
 import { faDownload, faPen, faRotateRight, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { stagger, useAnimate } from "framer-motion";
 import DefaultErrorPage from 'next/error';
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from './CalloutSetPage.module.css';
 import Symbol from "./Symbol";
@@ -43,8 +42,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const [isGeneratingImage, setIsGeneratingImage] = useState<boolean>(false)
     const [restoreDefaultsClicked, setRestoreDefaultsClicked] = useState<boolean>(false)
     const [scope, animate] = useAnimate()
-    const router = useRouter()
-
+    
     const changeActivity = useCallback((activity: Activity | null) => {
         setSelectedActivity(activity)
 
@@ -57,8 +55,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
         }
 
         // set query params to reflect the selected activity, or remove them if null
-        router.replace(`${window.location.pathname}?${urlParams.toString()}`)
-    }, [router])
+        window.history.replaceState(null, '', `${window.location.pathname}?${urlParams.toString()}`)
+    }, [])
 
     const onRestoreDefaults = () => {
         setCustomNames({})
@@ -136,9 +134,8 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                 }
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    }, [calloutSet, changeActivity])
+    
     const downloadImage = () => {
         if (isGeneratingImage) return
         setIsGeneratingImage(true)
@@ -337,7 +334,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
     const backgroundImageSrc = `/images/callouts/${calloutSet.id}/extra/symbol-list-background.png`
 
     return (
-        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='Planets background' imageClassName={styles.backgroundImage} includeNavHeight>
+        <PageSection backgroundSrc={backgroundImageSrc} backgroundAlt='' imageClassName={styles.backgroundImage}>
             <div className={styles.mainContent}>
                 <h1 className={styles.title}>{calloutSet.name}</h1>
                 {
@@ -375,8 +372,6 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                     )
                 }
 
-                {/* <hr className={styles.divider} /> */}
-
                 {loadedImages.length < imageList.length && <Loading />}
                 <div className={`${styles.symbolsDisplay} ${loadedImages.length < imageList.length ? 'hide-visibility' : ''}`}>
                     <div className={styles.actionButtonList}>
@@ -397,7 +392,7 @@ export default function CalloutSetPage({ calloutSet }: { calloutSet: CalloutSet 
                                 selectorClassName={styles.symbolSelector}
                                 inEditMode={inEditMode}
                                 setInEditMode={setInEditMode}
-                                onLoadingComplete={() => { handleImageLoad(imageReference.id) }}
+                                onLoad={() => { handleImageLoad(imageReference.id) }}
                                 name={customNames[imageReference.id] ?? imageReference.name}
                                 onNameChange={e => handleNameChange(imageReference.id, e.target.value)}
                                 restoreDefaultsClicked={restoreDefaultsClicked}

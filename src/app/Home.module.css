@@ -1,60 +1,3 @@
-.banner {
-    display: flex;
-    width: 70%;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto auto;
-    position: relative;
-}
-
-.bannerText {
-    flex-basis: 35%;
-    font-size: 1.6rem;
-}
-
-.bannerText h1 {
-    font-size: 2.5em;
-    margin-bottom: 1rem;
-    font-weight: 900;
-}
-
-.bannerText span {
-    display: block;
-    font-size: 1em;
-}
-
-.bannerText button {
-    margin: 1.5rem 0;
-    font-size: 1em;
-    font-weight: 800;
-    font-family: var(--font-title);
-    color: var(--text-primary);
-    border: 2px var(--text-primary) solid;
-    padding: 1rem;
-    border-radius: 2rem;
-    transition: all 0.2s linear;
-}
-
-.bannerText button:hover {
-    background-color: var(--text-primary);
-    color: var(--background);
-}
-
-.bannerImageContainer {
-    position: relative;
-    flex-basis: 35%;
-    margin-left: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bannerImage {
-    width: 100%;
-    height: 100%;
-}
-
 .calloutSectionCenterAligner {
     flex-grow: 1;
     display: flex;
@@ -63,20 +6,89 @@
 }
 
 .calloutSplitter {
-    width: 100%;
-    margin: 0 5rem;
+    width: 60%;
     display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+    align-items: center;
+    height: 600px;
+    background-color: rgba(0, 3, 10, 0.4);
+    border-radius: 1px;
+    padding: 2rem;
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(8px);
+    gap: 3rem;
+}
+
+.calloutSplitter * {
+    font-family: var(--font-primary);
+}
+
+.calloutTypePicker {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    width: fit-content;
+    background-color: rgba(220, 220, 220, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.calloutTypeButton {
+    font-size: 1.5rem;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    padding: 1rem 1.2rem;
+    transition: all 0.2s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    user-select: none;
+}
+
+.calloutTypeButton:not(.selectedCalloutType):hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calloutTypeButton:not(.selectedCalloutType) .calloutTypeText {
+    color: var(--text-tertiary);
+}
+
+.selectedCalloutType {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+.calloutTypeText {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* make calloutTypeIcon change color when it is in the selected state */
+.calloutTypeButton.selectedCalloutType .calloutTypeIcon {
+    /* Generated with https://codepen.io/sosuke/pen/Pjoqqp */
+    /* Target color is #6A9DFF */
+    filter: invert(59%) sepia(28%) saturate(1244%) hue-rotate(188deg) brightness(93%) contrast(107%);
+}
+
+.calloutTypeButton:not(.selectedCalloutType) .calloutTypeIcon {
+    /* Generated with https://codepen.io/sosuke/pen/Pjoqqp */
+    /* Target color is #979797 */
+    filter: invert(51%) sepia(66%) saturate(0%) hue-rotate(211deg) brightness(101%) contrast(97%);
 }
 
 .calloutSetSlideshowWrapper {
     position: relative;
-    flex-basis: 25vw;
+    width: 550px;
+    padding: 20px;
 }
 
 .calloutListSection {
-    flex-basis: 45%;
+    flex-basis: 60%;
 }
 
 .calloutListHeader {
@@ -88,22 +100,26 @@
 .calloutList {
     display: flex;
     gap: 1rem;
+    height: 350px;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
 .calloutSet {
+    flex: 1 1;
     position: relative;
     display: flex;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
     border: 1px white solid;
     border-radius: 8px;
     width: 100%;
-    height: 140px;
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
     transition: border 0.2s ease-in-out;
+    transition: max-height 0.3s ease-in-out;
 }
 
 .calloutSetBackground {
@@ -122,12 +138,19 @@
     border: 1px var(--text-secondary-bright) solid;
 }
 
+.calloutSetDivider {
+    width: 2px;
+    height: 70%;
+    margin-right: 1.4rem;
+}
+
 .calloutSetText {
     font-family: var(--font-primary);
+    padding: 15px 0;
 }
 
 .calloutSetText h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .calloutSetActivityList {
@@ -153,11 +176,10 @@
 
 .calloutSetSymbolContainer {
     position: relative;
-    width: 5.25rem;
-    height: 5.25rem;
+    width: 4.25rem;
+    height: 4.25rem;
     margin-left: 0.5rem;
     margin-right: 1.5rem;
-    filter: drop-shadow(1rem 1rem 20px black);
     opacity: 0.9;
 }
 
@@ -181,33 +203,45 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
-@media screen and (max-width: 2100px) {
-    .bannerText {
-        font-size: 1.25rem;
-    }
+.disabledCalloutType {
+    opacity: 0.5;
+    cursor: default;
+    position: relative;
+}
 
-    .calloutSetSlideshowWrapper {
-        flex-basis: 32vw;
+.comingSoonTooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 2100px) {
+    .calloutSplitter {
+        width: 70%;
     }
 }
 
 @media screen and (max-width: 1500px) {
     .calloutSplitter {
-        margin: 0;
+        width: 98%;
+    }
+
+    .calloutSetSlideshowWrapper {
+        padding: 10px;
     }
 }
 
 @media screen and (max-width: 1300px) {
-    .banner {
-        width: 90%;
-    }
-
-    .bannerText {
-        font-size: 1rem;
-    }
-
-    .bannerImageContainer {
-        flex-basis: 30%;
+    .calloutSplitter {
+        width: 80%;
     }
 
     .calloutListSection {
@@ -240,19 +274,9 @@
 }
 
 @media screen and (max-width: 850px) {
-    .banner {
-        flex-direction: column-reverse;
-    }
-
-    .bannerText {
-        flex-basis: 100%;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .bannerImageContainer {
-        margin-left: 0;
-        width: 60%;
+    .calloutSplitter {
+        padding: 0;
+        width: 99%;
     }
 
     .calloutListSection {
@@ -282,24 +306,38 @@
         height: 5rem;
     }
 
+    .calloutSetDivider {
+        position: absolute;
+        left: 7rem;
+    }
+
     .calloutSetActivityList {
         display: none;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .bannerText {
-        font-size: 0.8rem;
+    .calloutSplitter {
+        height: 800px;
     }
 
-    .bannerText h1 {
-        font-size: 2em;
+    .calloutTypePicker {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .calloutTypeText {
+        font-size: 1rem;
     }
 
     .calloutSetSymbolContainer {
         margin: 0.1rem;
         width: 4rem;
         height: 4rem;
+    }
+
+    .calloutSetDivider {
+        display: none;
     }
 
     .calloutSetText h2 {

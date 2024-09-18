@@ -4,10 +4,11 @@ import styles from './RootLayout.module.css';
 import './globals.css';
 
 
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import Navbar from '@/components/Navbar';
+import { getCalloutSets } from '@/utils/callouts/calloutSets';
 import { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 declare global {
     interface Window {
@@ -19,7 +20,7 @@ const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['500', '800', '900'],
     display: 'swap',
-    variable: '--font-title',
+    variable: '--font-secondary',
 })
 
 const roboto = Roboto({
@@ -29,7 +30,7 @@ const roboto = Roboto({
     variable: '--font-primary',
 })
 
-export default function RootLayout({children}: {children: React.ReactNode[]}) {
+export default async function RootLayout({children}: {children: React.ReactNode[]}) {
     return (
         <html lang='en' className={`${montserrat.variable} ${roboto.variable}`}>
             <GoogleAnalytics />
@@ -46,8 +47,8 @@ export default function RootLayout({children}: {children: React.ReactNode[]}) {
                     `}
                 </Script>
 
-                <Navbar />
                 <div className={styles.webpageContainer}>
+                    <Navbar calloutSets={await getCalloutSets()} />
                     <main>
                         {children}
                     </main>

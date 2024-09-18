@@ -1,83 +1,96 @@
 .footer {
-    background-color: var(--background-tertiary);
-    border-top: 1px solid white;
-}
-
-.footerContent {
-    height: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.left, .right {
-    display: flex;
-    align-items: center;
+    background-color: var(--background);
+    border-top: 1px solid var(--border-primary);
+    padding: 18px 0;
 }
 
 .imageContainer {
     position: relative;
-    width: 3rem;
-    margin-right: 1rem;
+    max-width: 20rem;
+    padding: 0 10px;
+    margin: 20px auto;
 }
 
 .image {
-    border: 1px solid white;
     border-radius: 5px;
     width: 100%;
     height: auto;
 }
 
-.footerText {
+.footerDivider {
+    width: 50%;
+    border: 1px solid var(--border-primary);
+    margin: 10px auto;
+}
+
+.footerContent {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 50%;
+    margin: 10px auto;
+    font-family: var(--font-primary);
 }
 
-.footerText a {
-    color: var(--text-secondary-bright);
+.footerContent * {
+    /* font-family: var(--font-primary); */
 }
 
-.footerText a:hover {
+.footerContent a:hover {
     text-decoration: underline;
 }
 
-.discordButton {
-    font-size: 35px;
-    aspect-ratio: 1 / 1;
-    padding: 5px;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease-in-out;
+.footerSectionHeader {
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
-.discordButton:hover {
-    /* change color to discord blurple */
-    color: #5865F2;
-    background-color: var(--background);
-    transform: scale(1.04);
+.footerSectionList {
+    margin-top: 7px;
+    font-size: 0.85em;
+    color: var(--text-tertiary);
+    line-height: 1.3em;
+    list-style: none;
 }
 
-.discordButtonIcon * {
-    transition: all 0.2s ease-in-out;
+.footerListIcon {
+    margin-left: 4px;
 }
 
-.discordButton:hover .discordButtonIcon * {
-    color: #5865F2;
+.sideText {
+    color: var(--text-quaternary);
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 980px) {
     .footerContent {
-        padding: 0;
+        width: 80%;
+    }
+
+    .footerDivider {
+        width: 80%;
     }
 }
 
-@media screen and (max-width: 300px) {
-    .footerText {
-        font-size: 0.8em;
+@media screen and (max-width: 500px) {
+    .footerContent {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footerSection {
+        text-align: center;
+    }
+
+    .footerSectionHeader {
+        font-size: 1.2em;
+    }
+
+    .footerDivider {
+        width: 80%;
+    }
+
+    .footerSectionList {
+        font-size: 1em;
     }
 }

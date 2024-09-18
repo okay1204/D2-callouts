@@ -1,45 +1,182 @@
 .nav {
+    background-color: var(--background);
+    border: 1px var(--border-primary);
+    border-style: solid none;
     width: 100%;
-    position: absolute;
+    padding: 5.5px 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topRow {
+    padding: 0 34px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: var(--navbar-height);
-    padding: 0 32px;
-    background-color: transparent;
-    z-index: 100;
 }
 
-.logoContainer {
+.bottomRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeButton:hover {
+    opacity: 0.9;
+}
+
+.homeIcon {
+    font-size: 1.5rem;
+}
+
+.searchBar {
+    width: 35%;
     position: relative;
-    height: 5rem;
-    padding: 1.2rem;
-    transition: all 0.2s ease-in-out;
 }
 
-.logoContainer:hover {
-    opacity: 0.8;
-}
-
-.logoIcon {
+.searchBar2 {
     display: none;
 }
 
-.logo {
-    width: auto;
-    height: 100%;
+.searchBarAbsolute {
+    position: absolute;
+    width: 100%;
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-@media (max-width: 768px) {
-    .nav {
-        padding: 0;
+.searchInputArea {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;    
+    gap: 10px;
+}
+
+.searchBar, .searchInputArea {
+    height: 46px;
+}
+
+.searchBarFocused {
+    border: 1px solid rgba(255, 255, 255, 0.647);
+}
+
+.searchIcon {
+    color: rgba(132, 132, 132, 1);
+}
+
+.searchBarText {
+    width: 100%;
+}
+
+.searchResultList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.searchResult {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    transition: all 0.1s linear;
+}
+
+.searchResult:hover {
+    background-color: var(--background-tertiary);
+}
+
+.searchResult:last-child {
+    padding-bottom: 20px;
+}
+
+.searchResultName {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 800;
+}
+
+.searchResultSet {
+    display: block;
+    font-size: 1em;
+    color: var(--text-tertiary);
+}
+
+.savedSetsButton {
+    position: relative;
+    height: 1rem;
+    width: 0.5rem;
+    margin: 1.2rem;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.savedSetsButton:hover {
+    opacity: 0.8;
+}
+
+.savedSetsButtonBorder {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.logo {
+    position: absolute;
+    top: -7px;
+    width: 22px;
+    height: 22px;
+}
+
+@media (max-width: 850px) {
+    .searchBar {
+        width: 100%;
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .searchBar {
+        width: 100%;
     }
 
-    .logoIcon {
-        display: block;
+    .searchBar, .searchInputArea {
+        height: 36px;
     }
 
-    .fullLogo {
+    .searchResultList {
+        font-size: 0.8em;
+    }
+
+    .searchBar1 {
         display: none;
     }
+
+    .searchBar2 {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+.comingSoonTooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 10px;
+    z-index: 100;
 }

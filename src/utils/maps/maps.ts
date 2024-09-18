@@ -1,4 +1,3 @@
-import 'server-only';
 import ronMapset from './root-of-nightmares/mapset';
 
 export interface MapPosition {
