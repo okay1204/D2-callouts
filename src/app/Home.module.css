@@ -203,6 +203,26 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+.disabledCalloutType {
+    opacity: 0.5;
+    cursor: default;
+    position: relative;
+}
+
+.comingSoonTooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
 @media screen and (max-width: 2100px) {
     .calloutSplitter {
         width: 70%;

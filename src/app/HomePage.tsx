@@ -40,6 +40,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
     const [isHoveringActivity, setIsHoveringActivity] = useState(false);
     const [symbolsSelected, setSymbolsSelected] = useState(true);
     const [welcomeModalOpen, setWelcomeModalOpen] = useState(false);
+    const [isMapHovered, setIsMapHovered] = useState(false);
 
     // Only show the welcome modal if it's the user's first time visiting the site
     useEffect(() => {
@@ -72,13 +73,22 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     />
                                     <h2 className={styles.calloutTypeText}>Symbols</h2>
                                 </div>
-                                <div className={`${styles.calloutTypeButton} ${!symbolsSelected ? styles.selectedCalloutType : ''}`} onClick={() => setSymbolsSelected(false)}>
+                                <div 
+                                    className={`${styles.calloutTypeButton} ${styles.disabledCalloutType}`}
+                                    onMouseEnter={() => setIsMapHovered(true)}
+                                    onMouseLeave={() => setIsMapHovered(false)}
+                                >
                                     <Image 
                                         src={MapsIcon}
                                         alt='Maps Icon'
                                         className={styles.calloutTypeIcon}
                                     />
                                     <h2 className={styles.calloutTypeText}>Maps</h2>
+                                    {isMapHovered && (
+                                        <div className={styles.comingSoonTooltip}>
+                                            Coming Soon!
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className={styles.calloutList}>
