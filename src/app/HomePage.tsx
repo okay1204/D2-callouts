@@ -63,7 +63,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                 <div className={styles.calloutSectionCenterAligner}>
                     <div className={styles.calloutSplitter}>
                         <div className={styles.calloutListSection}>
-                            {/* <div className={styles.calloutTypePicker}>
+                            <div className={styles.calloutTypePicker}>
                                 <div className={`${styles.calloutTypeButton} ${symbolsSelected ? styles.selectedCalloutType : ''}`} onClick={() => setSymbolsSelected(true)}>
                                     <Image 
                                         src={SymbolsIcon}
@@ -80,7 +80,7 @@ export default function HomePage({ calloutSets }: { calloutSets: CalloutSet[] })
                                     />
                                     <h2 className={styles.calloutTypeText}>Maps</h2>
                                 </div>
-                            </div> */}
+                            </div>
                             <div className={styles.calloutList}>
                                 {calloutSets.map(calloutSet => (
                                     <motion.div

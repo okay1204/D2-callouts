@@ -29,7 +29,7 @@
 }
 
 .homeIcon {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .searchBar {
@@ -110,9 +110,9 @@
 
 .savedSetsButton {
     position: relative;
-    height: 5rem;
-    width: 3rem;
-    padding: 1.2rem;
+    height: 1rem;
+    width: 0.5rem;
+    margin: 1.2rem;
     transition: all 0.2s ease-in-out;
     display: flex;
     justify-content: center;
@@ -131,9 +131,9 @@
 
 .logo {
     position: absolute;
-    top: 23px;
-    width: 25px;
-    height: 25px;
+    top: -7px;
+    width: 22px;
+    height: 22px;
 }
 
 @media (max-width: 850px) {
