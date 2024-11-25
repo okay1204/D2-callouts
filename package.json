@@ -16,6 +16,7 @@
     "@types/node": "20.2.4",
     "@types/react": "^18.2.9",
     "@types/react-dom": "18.2.4",
+    "d2-callouts": "file:",
     "eslint": "8.41.0",
     "framer-motion": "^10.12.16",
     "fs": "^0.0.1-security",
