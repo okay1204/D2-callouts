@@ -28,6 +28,8 @@ export default function Footer() {
                                 Tutorial Video
                                 <FontAwesomeIcon icon={faExternalLinkAlt} className={styles.footerListIcon} />
                             </Link>
+                        </li>
+                        <li>
                             <Link href='https://github.com/okay1204/D2-callouts' target='_blank'>
                                 GitHub
                                 <FontAwesomeIcon icon={faExternalLinkAlt} className={styles.footerListIcon} />
